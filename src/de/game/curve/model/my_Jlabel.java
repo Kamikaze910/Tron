@@ -28,7 +28,6 @@ public class my_Jlabel extends JLabel implements MouseListener {
 
 		// Noch Umbekannt was MouseAdapter macht
 		this.addMouseListener(new MouseAdapter() {
-			
 			// Funktionen des Mouselisteners
 			@Override
 			public void mouseEntered(MouseEvent e) {

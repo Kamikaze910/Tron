@@ -81,6 +81,10 @@ public class W_Main{
 
 
 	public JPanel getP_main() {
+		l_start.setForeground(Color.orange);
+		l_option.setForeground(Color.orange);
+		l_ende.setForeground(Color.orange);
+		l_text.setForeground(Color.orange);
 		return p_main;
 	}
 }

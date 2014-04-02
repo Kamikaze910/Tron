@@ -70,6 +70,9 @@ public class W_Option{
 	}	
 	
 	public JPanel getP_option() {
+		l_test.setForeground(Color.orange);
+		l_test2.setForeground(Color.orange);
+		l_zurueck.setForeground(Color.orange);
 		return p_option;
 	}
 }
