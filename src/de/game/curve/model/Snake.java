@@ -4,23 +4,22 @@ import java.awt.Color;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import de.game.curve.controller.Controller;
-import de.game.curve.view.KeyListener;
+import de.game.curve.view.Snake_draw;
 
-public class Snake implements java.awt.event.KeyListener{
-	
+
+public class Snake{
 	
 	protected Color farbe;
 	protected Faehigkeit special;
 	protected int speed;
 	protected int drehwinkel;
-	
-	protected int links;
-	protected int rechts;
-	protected int oben;
+	private Snake_draw snake_draw;
+	private int spielerNr;
 	
 	boolean druck_links = false;
 	boolean druck_rechts = false;
@@ -28,27 +27,51 @@ public class Snake implements java.awt.event.KeyListener{
 	
 	protected Point current_Position;
 	protected Rectangle spielfeldgroesse;
+
+	private int links;
+	private int rechts;
+	private int oben;
+	
+	private int r = 2;
+	private int genauigkeit = 60;
+	private double winkel = 2*Math.PI/genauigkeit;
+	private int grad = 0;
+	
 	
 	Timer t = new Timer();
+	
 	TimerTask bewegen = new TimerTask() {
-		int i=0;
 		public void run() {
+
 			if(druck_links){
-				
+				current_Position.x += Math.round((Math.cos(grad--*winkel)*r));
+				current_Position.y += Math.round((Math.sin(grad*winkel)*r));
+				if(grad==0 || grad<0)
+					grad=genauigkeit;
 			}
+			
 			else if(druck_rechts){
-				
+				current_Position.x += Math.round((Math.cos(grad++*winkel)*r));
+				current_Position.y += Math.round((Math.sin(grad*winkel)*r));
+				if(grad==genauigkeit)
+					grad=0;
 			}
+			
 			else{
-			current_Position.x += 1;  
-			current_Position.y += 0;
+				current_Position.x += Math.round((Math.cos(grad*winkel)*r));
+				current_Position.y += Math.round((Math.sin(grad*winkel)*r));
 			}
-			
-			
+			if(Controller.getInstance().getW_StartMenu().getW_Game().getGameField().snake_isPunktBelegt(getSnake()))
+			{
+				//Kollision -> Spieler wird deaktiviert
+			}
+			else
+				Controller.getInstance().getW_StartMenu().getW_Game().getGameField().snake_BelegtPunkt(getSnake());
 		}
 	};
 	
-	public Snake(Color farbe, Faehigkeit special, int speed, int drehwinkel, int links, int rechts, int oben){
+	public Snake(Color farbe, Faehigkeit special, int speed, int drehwinkel, final int links, final int rechts, int oben){
+
 		this.farbe = farbe;
 		this.special = special;
 		this.speed = speed;
@@ -60,32 +83,43 @@ public class Snake implements java.awt.event.KeyListener{
 		t.schedule(bewegen, speed);
 	}
 	
-	public Snake(Rectangle spielfeld, Color color, int links, int rechts, int oben){
-		
+	public Snake(int spielerNr, Rectangle spielfeld, Color color, final int links, final int rechts, int oben){
+
+		this.spielerNr = spielerNr;
 		this.links = links;
 		this.rechts = rechts;
 		this.oben = oben;
 		spielfeldgroesse = spielfeld;
 		farbe = color;
+		
+		snake_Start();
+	}
+	
+	public void snake_Start(){
+		
 		platzieren();
-		t.schedule(bewegen, 100, 20);
+		snake_draw = new Snake_draw(spielfeldgroesse, this);
+			
+		t.schedule(bewegen, 100, 10);
+	}
+	
+	public void snake_Ende(){
+		
 	}
 	
 	public void platzieren(){
-		int x = (int) ((double)Math.random() * spielfeldgroesse.width);
-		int y = (int) ((double)Math.random() * spielfeldgroesse.height);
+		int abstandZumRand = 200;
+		int x = (int) ((double)Math.random() * (spielfeldgroesse.width-abstandZumRand*2) + abstandZumRand);
+		int y = (int) ((double)Math.random() * (spielfeldgroesse.height-abstandZumRand*2) + abstandZumRand);
 		current_Position = new Point(x, y);
+		grad = (int)((double)Math.random() * 360);
 		System.out.println(current_Position);
-	}
-	
-	public void run(){
-	
-
-	}
-	
-	public void attack(){
+		System.out.println(grad);
 		
+		System.out.println();
+		System.out.println();
 	}
+	
 
 	public Color getFarbe() {
 		return farbe;
@@ -151,32 +185,50 @@ public class Snake implements java.awt.event.KeyListener{
 		this.current_Position = current_Position;
 	}
 
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("ja");
+	public boolean isDruck_links() {
+		return druck_links;
 	}
 
-	@Override
-	public void keyReleased(KeyEvent e) {
-		System.out.println("druck");
-		if(links == e.getKeyCode())
-			System.out.println("Links");
-		if(rechts == e.getKeyCode())
-			System.out.println("Rechts");
-		if(oben == e.getKeyCode())
-			System.out.println("Special");
+	public void setDruck_links(boolean druck_links) {
+		this.druck_links = druck_links;
 	}
 
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("nein");
+	public boolean isDruck_rechts() {
+		return druck_rechts;
 	}
 
+	public void setDruck_rechts(boolean druck_rechts) {
+		this.druck_rechts = druck_rechts;
+	}
+
+	public boolean isDruck_oben() {
+		return druck_oben;
+	}
+
+	public void setDruck_oben(boolean druck_oben) {
+		this.druck_oben = druck_oben;
+	}
+
+	public Snake_draw getSnake_draw() {
+		return snake_draw;
+	}
+
+	public void setSnake_draw(Snake_draw snake_draw) {
+		this.snake_draw = snake_draw;
+	}
 	
+	public Snake getSnake(){
+		return this;
+	}
 
-	
+	public int getSpielerNr() {
+		return spielerNr;
+	}
+
+	public void setSpielerNr(int spielerNr) {
+		this.spielerNr = spielerNr;
+	}
+
 	
 	
 	

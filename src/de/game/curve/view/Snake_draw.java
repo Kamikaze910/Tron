@@ -19,6 +19,11 @@ public class Snake_draw extends JLabel{
 	Point pos;
 	Snake snake;
 	boolean start = true;
+	int snake_Groesse = 10;
+	
+	boolean links = false;
+	boolean rechts = false;
+	boolean gerade = false;
 	
 	Timer t = new Timer();
 	
@@ -42,13 +47,11 @@ public class Snake_draw extends JLabel{
 	public void paint(Graphics g)
 	{
 		g.setColor(snake.getFarbe());
-		g.fillOval(pos.x, pos.y , 10, 10);
-		System.out.println(pos);
+		g.fillOval(pos.x, pos.y , snake_Groesse, snake_Groesse);
 		if(start){
 			t.schedule(move, 0, 10);
 			start = false;
 		}
-		
 	}
 
 	public Point getPos() {
@@ -66,5 +69,15 @@ public class Snake_draw extends JLabel{
 	public void setSnake(Snake snake) {
 		this.snake = snake;
 	}
+
+	public Timer getT() {
+		return t;
+	}
+
+	public void setT(Timer t) {
+		this.t = t;
+	}
+	
+	
 
 }

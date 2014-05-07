@@ -1,15 +1,18 @@
 package de.game.curve.view;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Toolkit;
+
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import de.game.curve.controller.Controller;
 
-public class W_StartMenu extends JFrame{
+
+
+
+public class W_StartMenu extends JFrame implements KeyListener{
 
 	private static W_StartMenu instance = null;
 	W_Main w_Main = null;
@@ -28,6 +31,7 @@ public class W_StartMenu extends JFrame{
 		w_Main = new W_Main();
 		w_Option = new W_Option();
 		setUndecorated(true);
+		addKeyListener(this);
         setExtendedState(MAXIMIZED_BOTH);
         setContentPane(w_Main.getP_main());
         setVisible(true);
@@ -63,6 +67,35 @@ public class W_StartMenu extends JFrame{
 
 	public void setW_Game(W_Game w_Game) {
 		this.w_Game = w_Game;
+	}
+
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if(e.getKeyCode() == 37)
+			Controller.getInstance().getW_StartMenu().getW_Game().getSnake().get(0).setDruck_links(true);
+		if(e.getKeyCode() == 39)
+			Controller.getInstance().getW_StartMenu().getW_Game().getSnake().get(0).setDruck_rechts(true);
+		if(e.getKeyCode() == 27){
+			w_Game = null;
+			Controller.getInstance().getW_StartMenu().changePanel(Controller.getInstance().getP_main());
+		}
+	}
+
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+	if(e.getKeyCode() == 37)
+		Controller.getInstance().getW_StartMenu().getW_Game().getSnake().get(0).setDruck_links(false);
+	if(e.getKeyCode() == 39)
+		Controller.getInstance().getW_StartMenu().getW_Game().getSnake().get(0).setDruck_rechts(false);
+	}
+
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

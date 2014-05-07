@@ -6,6 +6,7 @@ import java.awt.Rectangle;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import de.game.curve.model.Spielfeld;
 import de.game.curve.model.count;
 import de.game.curve.model.my_Jlabel;
 import de.game.curve.model.Snake;
@@ -16,7 +17,7 @@ public class Controller {
 	
 	private count counter = new count();
 	private W_StartMenu w_StartMenu = null;
-	private Snake snake = null;
+
 	
 	// Singleton Design Pattern
 	private static Controller instance;
