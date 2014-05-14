@@ -1,18 +1,9 @@
 package de.game.curve.view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Rectangle;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
@@ -22,21 +13,23 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.plaf.metal.MetalLabelUI;
 import javax.swing.plaf.metal.MetalSliderUI;
-import javax.xml.bind.ValidationEvent;
+
 import de.game.curve.controller.Controller;
 import de.game.curve.model.my_Jlabel;
 
 public class P_Option{
 	
 	// Werte
-	private Color 	color;
-	private int		speed;
-	private int     holesize;
-	private int		holespace;
-	private int		playercount;
-	private int		turnangle;
+	private Color 	color1 = Color.blue;
+	private Color 	color2 = Color.red;
+	private Color 	color3 = Color.yellow;
+	private Color	color4 = Color.green;
+	private int		speed = 45;
+	private int     holesize = 40;
+	private int		holespace = 50;
+	private int		playercount = 4;
+	private int		turnangle = 32;
 	private int		keys;
 	private int		skill;
 
@@ -65,16 +58,33 @@ public class P_Option{
 	private JLabel l_specialbild = new JLabel();
 	private JLabel l_button = new JLabel();
 	private JLabel l_specials = new JLabel();
+	
+	private JTextField t_p1lk = new JTextField();
+	private JTextField t_p1rk = new JTextField();
+	private JTextField t_p1sk = new JTextField();
+	private JTextField t_p2lk = new JTextField();
+	private JTextField t_p2rk = new JTextField();
+	private JTextField t_p2sk = new JTextField();
+	private JTextField t_p3lk = new JTextField();
+	private JTextField t_p3rk = new JTextField();
+	private JTextField t_p3sk = new JTextField();
+	private JTextField t_p4lk = new JTextField();
+	private JTextField t_p4rk = new JTextField();
+	private JTextField t_p4sk = new JTextField();
+	
 	private my_Jlabel l_zurueck = new my_Jlabel("Zurück", 50, 900, 100, 40);
+	
 	private JSlider sl_speed = new JSlider(0,100,50);
 	private JSlider sl_holesize = new JSlider(0,100,50);
 	private JSlider sl_holespace = new JSlider(0,100,50);
 	private JSlider sl_turnangle = new JSlider(0,100,50);
+	
 	private JProgressBar p_speed = new JProgressBar(0, 100);
 	private JProgressBar p_holesize = new JProgressBar(0, 100);
 	private JProgressBar p_holespace = new JProgressBar(0, 100);
 	private JProgressBar p_turnangle = new JProgressBar(0, 100);
-	private JSpinner sp_playercount = new JSpinner(new SpinnerNumberModel(5, 0, 10, 1));
+	
+	private JSpinner sp_playercount = new JSpinner(new SpinnerNumberModel(0, 0, 10, 1));
 			
 	// Fenster
 	public P_Option (){
@@ -84,41 +94,46 @@ public class P_Option{
 		sl_speed.setOpaque(false);
 		sl_speed.setPaintTrack(false);
 		sl_speed.setPaintLabels(false);
-		sl_speed.setValue(0);
+		sl_speed.setValue(speed);
 		
 		sl_holesize.setBounds(150, 150, 500, 40);
 		sl_holesize.setOpaque(false);
 		sl_holesize.setPaintTrack(false);
 		sl_holesize.setPaintLabels(false);
-		sl_holesize.setValue(0);
+		sl_holesize.setValue(holesize);
 		
 		sl_holespace.setBounds(150, 200, 500, 40);
 		sl_holespace.setOpaque(false);
 		sl_holespace.setPaintTrack(false);
 		sl_holespace.setPaintLabels(false);
-		sl_holespace.setValue(0);
+		sl_holespace.setValue(holespace);
 		
 		sl_turnangle.setBounds(150, 250, 500, 40);
 		sl_turnangle.setOpaque(false);
 		sl_turnangle.setPaintTrack(false);
 		sl_turnangle.setPaintLabels(false);
-		sl_turnangle.setValue(0);
+		sl_turnangle.setValue(turnangle);
 		
 		p_speed.setBounds(150, 100, 500, 40);
 		p_speed.setForeground(Color.cyan);
+		p_speed.setValue(speed);
 		
 		p_holesize.setBounds(150, 150, 500, 40);
 		p_holesize.setForeground(Color.green);
+		p_holesize.setValue(holesize);
 		
 		p_holespace.setBounds(150, 200, 500, 40);
 		p_holespace.setForeground(Color.yellow);
+		p_holespace.setValue(holespace);
 		
 		p_turnangle.setBounds(150, 250, 500, 40);
 		p_turnangle.setForeground(Color.orange);
+		p_turnangle.setValue(turnangle);
 		
-		sp_playercount.setBounds(1050, 105, 50, 25);
+		sp_playercount.setBounds(150, 358, 50, 25);
+		sp_playercount.setValue(playercount);
 		
-		l_anzahlspilertext.setBounds(950, 100, 500, 40);
+		l_anzahlspilertext.setBounds(50, 350, 500, 40);
 		l_anzahlspilertext.setText("Player Count");
 		l_anzahlspilertext.setForeground(Color.white);
 		
@@ -139,23 +154,23 @@ public class P_Option{
 		l_turnangletext.setForeground(Color.white);
 		
 		l_speedvalue.setBounds(655, 100, 500, 40);
-		l_speedvalue.setText("0");
+		l_speedvalue.setText(Integer.toString(speed));
 		l_speedvalue.setForeground(Color.cyan);
 		
 		l_holesizevalue.setBounds(655, 150, 500, 40);
-		l_holesizevalue.setText("0");
+		l_holesizevalue.setText(Integer.toString(holesize));
 		l_holesizevalue.setForeground(Color.green);
 		
 		l_holespacevalue.setBounds(655, 200, 500, 40);
-		l_holespacevalue.setText("0");
+		l_holespacevalue.setText(Integer.toString(holespace));
 		l_holespacevalue.setForeground(Color.yellow);
 		
 		l_turnanglevalue.setBounds(655, 250, 500, 40);
-		l_turnanglevalue.setText("0");
+		l_turnanglevalue.setText(Integer.toString(turnangle));
 		l_turnanglevalue.setForeground(Color.orange);
 		
-		l_button.setBounds(350, 420, 50, 40);
-		l_button.setText("Buttons");
+		l_button.setBounds(240, 420, 500, 40);
+		l_button.setText("<Buttons>");
 		l_button.setForeground(Color.white);
 		
 		l_keyleft.setBounds(150, 450, 50, 40);
@@ -166,20 +181,20 @@ public class P_Option{
 		l_keyright.setText("Right");
 		l_keyright.setForeground(Color.white);
 		
-		l_keyspecial.setBounds(350, 450, 50, 40);
+		l_keyspecial.setBounds(350, 450, 500, 40);
 		l_keyspecial.setText("Special-Taste");
 		l_keyspecial.setForeground(Color.white);
 		
-		l_specialtext.setBounds(550, 450, 50, 40);
-		l_specialtext.setText("Special");
+		l_specialtext.setBounds(545, 420, 500, 40);
+		l_specialtext.setText("<Special>");
 		l_specialtext.setForeground(Color.white);
 		
-		l_specialbild.setBounds(650, 450, 50, 40);
-		l_specialbild.setText("Special");
+		l_specialbild.setBounds(600, 450, 500, 40);
+		l_specialbild.setText("Special_Bild");
 		l_specialbild.setForeground(Color.white);
 		
-		l_specials.setBounds(600, 400, 50, 40);
-		l_specials.setText("Special");
+		l_specials.setBounds(500, 450, 500, 40);
+		l_specials.setText("Special_Name");
 		l_specials.setForeground(Color.white);
 		
 		l_keysP1.setBounds(50, 500, 50, 40);
@@ -197,6 +212,54 @@ public class P_Option{
 		l_keysP4.setBounds(50, 650, 50, 40);
 		l_keysP4.setText("Spieler 4");
 		l_keysP4.setForeground(Color.white);
+		
+		t_p1lk.setBounds(150, 500, 50, 40);
+		t_p1lk.setBackground(Color.BLACK);
+		t_p1lk.setForeground(color1);
+		
+		t_p1rk.setBounds(250, 500, 50, 40);
+		t_p1rk.setBackground(Color.BLACK);
+		t_p1rk.setForeground(color1);
+		
+		t_p1sk.setBounds(350, 500, 50, 40);
+		t_p1sk.setBackground(Color.BLACK);
+		t_p1sk.setForeground(color1);
+		
+		t_p2lk.setBounds(150, 550, 50, 40);
+		t_p2lk.setBackground(Color.BLACK);
+		t_p2lk.setForeground(color2);
+		
+		t_p2rk.setBounds(250, 550, 50, 40);
+		t_p2rk.setBackground(Color.BLACK);
+		t_p2rk.setForeground(color2);
+		
+		t_p2sk.setBounds(350, 550, 50, 40);
+		t_p2sk.setBackground(Color.BLACK);
+		t_p2sk.setForeground(color2);
+		
+		t_p3lk.setBounds(150, 600, 50, 40);
+		t_p3lk.setBackground(Color.BLACK);
+		t_p3lk.setForeground(color3);
+		
+		t_p3rk.setBounds(250, 600, 50, 40);
+		t_p3rk.setBackground(Color.BLACK);
+		t_p3rk.setForeground(color3);
+		
+		t_p3sk.setBounds(350, 600, 50, 40);
+		t_p3sk.setBackground(Color.BLACK);
+		t_p3sk.setForeground(color3);
+		
+		t_p4lk.setBounds(150, 650, 50, 40);
+		t_p4lk.setBackground(Color.BLACK);
+		t_p4lk.setForeground(color4);
+		
+		t_p4rk.setBounds(250, 650, 50, 40);
+		t_p4rk.setBackground(Color.BLACK);
+		t_p4rk.setForeground(color1);
+		
+		t_p4sk.setBounds(350, 650, 50, 40);
+		t_p4sk.setBackground(Color.BLACK);
+		t_p4sk.setForeground(color1);
 		
 		l_option.setBounds(50, 50, 50, 40);
 		l_option.setText("Option");
@@ -222,7 +285,6 @@ public class P_Option{
 		p_option.add(l_holespacevalue);
 		p_option.add(l_turnanglevalue);
 		p_option.add(l_anzahlspilertext);
-		
 		p_option.add(l_keysP1);
 		p_option.add(l_keysP2);
 		p_option.add(l_keysP3);
@@ -236,6 +298,18 @@ public class P_Option{
 		p_option.add(l_specialbild);
 		p_option.add(l_button);
 		p_option.add(l_specials);
+		p_option.add(t_p1lk);
+		p_option.add(t_p1rk);
+		p_option.add(t_p1sk);
+		p_option.add(t_p2lk);
+		p_option.add(t_p2rk);
+		p_option.add(t_p2sk);
+		p_option.add(t_p3lk);
+		p_option.add(t_p3rk);
+		p_option.add(t_p3sk);
+		p_option.add(t_p4lk);
+		p_option.add(t_p4rk);
+		p_option.add(t_p4sk);
 		
 		sl_speed.setUI(new MetalSliderUI(){
 			protected void scrollDueToClickInTrack(int direction) {
