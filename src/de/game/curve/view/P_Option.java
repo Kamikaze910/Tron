@@ -30,8 +30,8 @@ public class P_Option{
 	private int		holespace = 50;
 	private int		playercount = 4;
 	private int		turnangle = 32;
-	private int		keys;
 	private int		skill;
+	private String	keys[] = new String [12];
 
 	//Fenster Elemente
 	private JPanel p_option = new JPanel(null);
@@ -59,18 +59,18 @@ public class P_Option{
 	private JLabel l_button = new JLabel();
 	private JLabel l_specials = new JLabel();
 	
-	private JTextField t_p1lk = new JTextField();
-	private JTextField t_p1rk = new JTextField();
-	private JTextField t_p1sk = new JTextField();
-	private JTextField t_p2lk = new JTextField();
-	private JTextField t_p2rk = new JTextField();
-	private JTextField t_p2sk = new JTextField();
-	private JTextField t_p3lk = new JTextField();
-	private JTextField t_p3rk = new JTextField();
-	private JTextField t_p3sk = new JTextField();
-	private JTextField t_p4lk = new JTextField();
-	private JTextField t_p4rk = new JTextField();
-	private JTextField t_p4sk = new JTextField();
+	private JTextField t_p1lk = new JTextField(1);
+	private JTextField t_p1rk = new JTextField(1);
+	private JTextField t_p1sk = new JTextField(1);
+	private JTextField t_p2lk = new JTextField(1);
+	private JTextField t_p2rk = new JTextField(1);
+	private JTextField t_p2sk = new JTextField(1);
+	private JTextField t_p3lk = new JTextField(1);
+	private JTextField t_p3rk = new JTextField(1);
+	private JTextField t_p3sk = new JTextField(1);
+	private JTextField t_p4lk = new JTextField(1);
+	private JTextField t_p4rk = new JTextField(1);
+	private JTextField t_p4sk = new JTextField(1);
 	
 	private my_Jlabel l_zurueck = new my_Jlabel("Zurück", 50, 900, 100, 40);
 	
