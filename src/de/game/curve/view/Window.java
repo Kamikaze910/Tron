@@ -12,24 +12,24 @@ import de.game.curve.controller.Controller;
 
 
 
-public class W_StartMenu extends JFrame implements KeyListener{
+public class Window extends JFrame implements KeyListener{
 
-	private static W_StartMenu instance = null;
-	W_Main w_Main = null;
-	W_Option w_Option = null;
-	W_Game w_Game = null;
+	private static Window instance = null;
+	P_Main w_Main = null;
+	P_Option w_Option = null;
+	P_Game w_Game = null;
 
-	public static W_StartMenu getInstance() {
+	public static Window getInstance() {
 		if(instance==null)
-			instance=new W_StartMenu();
-		
+			instance=new Window();
+
 		return instance;
 	}
 
-	
-	public W_StartMenu(){
-		w_Main = new W_Main();
-		w_Option = new W_Option();
+
+	public Window(){
+		w_Main = new P_Main();
+		w_Option = new P_Option();
 		setUndecorated(true);
 		addKeyListener(this);
         setExtendedState(MAXIMIZED_BOTH);
@@ -37,35 +37,35 @@ public class W_StartMenu extends JFrame implements KeyListener{
         setVisible(true);
         repaint();
 	}
-	
+
 	public void changePanel(JPanel panel){
 		setContentPane(panel);
 		repaint();
-		revalidate();
+		validate();
 	}
-	
 
-	public W_Main getW_Main() {
+
+	public P_Main getW_Main() {
 		return w_Main;
 	}
 
-	public void setW_Main(W_Main w_Main) {
+	public void setW_Main(P_Main w_Main) {
 		this.w_Main = w_Main;
 	}
 
-	public W_Option getW_Option() {
+	public P_Option getW_Option() {
 		return w_Option;
 	}
 
-	public void setW_Option(W_Option w_Option) {
+	public void setW_Option(P_Option w_Option) {
 		this.w_Option = w_Option;
 	}
 
-	public W_Game getW_Game() {
+	public P_Game getW_Game() {
 		return w_Game;
 	}
 
-	public void setW_Game(W_Game w_Game) {
+	public void setW_Game(P_Game w_Game) {
 		this.w_Game = w_Game;
 	}
 
@@ -79,6 +79,10 @@ public class W_StartMenu extends JFrame implements KeyListener{
 		if(e.getKeyCode() == 27){
 			w_Game = null;
 			Controller.getInstance().getW_StartMenu().changePanel(Controller.getInstance().getP_main());
+		}
+		if(e.getKeyCode() == 32 && Controller.getInstance().getW_StartMenu().getW_Game().isRundeBeendet()){
+			Controller.getInstance().getW_StartMenu().getW_Game().setRundeBeendet(false);
+			Controller.getInstance().getW_StartMenu().getW_Game().game_NextRound();
 		}
 	}
 
@@ -95,8 +99,8 @@ public class W_StartMenu extends JFrame implements KeyListener{
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
-	
+
+
 }

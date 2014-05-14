@@ -10,13 +10,13 @@ import de.game.curve.model.Spielfeld;
 import de.game.curve.model.count;
 import de.game.curve.model.my_Jlabel;
 import de.game.curve.model.Snake;
-import de.game.curve.view.W_StartMenu;
+import de.game.curve.view.Window;
 
 
 public class Controller {
 	
 	private count counter = new count();
-	private W_StartMenu w_StartMenu = null;
+	private Window w_StartMenu = null;
 
 	
 	// Singleton Design Pattern
@@ -31,7 +31,7 @@ public class Controller {
 	
 	//Konstruktor
 	public Controller() {
-		w_StartMenu = W_StartMenu.getInstance();
+		w_StartMenu = Window.getInstance();
 	}
 	
 	//Panel_Wechsel---------------------------------------
@@ -74,11 +74,11 @@ public class Controller {
 	//----------------------------------------------------
 	
 	//View_Controller-------------------------------------
-	public W_StartMenu getW_StartMenu() {
+	public Window getW_StartMenu() {
 		return w_StartMenu;
 	}
 
-	public void setW_StartMenu(W_StartMenu w_StartMenu) {
+	public void setW_StartMenu(Window w_StartMenu) {
 		this.w_StartMenu = w_StartMenu;
 	}
 	

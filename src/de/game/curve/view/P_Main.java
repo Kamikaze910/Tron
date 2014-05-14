@@ -17,7 +17,7 @@ import javax.swing.border.Border;
 import de.game.curve.controller.Controller;
 import de.game.curve.model.my_Jlabel;
 
-public class W_Main{
+public class P_Main{
 	
 	//Fenster_Elemente - Main
 	private JPanel p_main = new JPanel(null);
@@ -29,7 +29,7 @@ public class W_Main{
 	private my_Jlabel l_text = new my_Jlabel("Text",50,200,100,40);
 	
 	
-	public W_Main (){
+	public P_Main (){
 		
 		
 
@@ -47,7 +47,7 @@ public class W_Main{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
-				Controller.getInstance().getW_StartMenu().setW_Game(new W_Game());
+				Controller.getInstance().getW_StartMenu().setW_Game(new P_Game());
 				Controller.getInstance().changePanel(Controller.getInstance().getP_game());
 			}
 		});

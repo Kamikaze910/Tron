@@ -13,63 +13,75 @@ import de.game.curve.view.Snake_draw;
 
 
 public class Snake{
-	
-	protected Color farbe;
-	protected Faehigkeit special;
-	protected int speed;
-	protected int drehwinkel;
-	private Snake_draw snake_draw;
-	private int spielerNr;
-	
-	boolean druck_links = false;
-	boolean druck_rechts = false;
-	boolean druck_oben = false;
-	
-	protected Point current_Position;
-	protected Rectangle spielfeldgroesse;
 
+	//Snake Eigenschaften
+	private int spielerNr;
+	private Color farbe;
+	private Faehigkeit special;
+	private int speed;
+	private int drehwinkel;
+	private boolean lebt = true;
+
+	//Steuerelemente
 	private int links;
 	private int rechts;
 	private int oben;
-	
+	boolean druck_links = false;
+	boolean druck_rechts = false;
+	boolean druck_oben = false;
+
+	//Snake Bewegung
+	protected Point current_Position;
 	private int r = 2;
 	private int genauigkeit = 60;
 	private double winkel = 2*Math.PI/genauigkeit;
-	private int grad = 0;
-	
-	
-	Timer t = new Timer();
-	
+	private int grad;
+
+	//Sonstige
+	private Rectangle spielfeldgroesse;
+	private Snake_draw snake_draw;
+	private Timer t = new Timer();
+
+
 	TimerTask bewegen = new TimerTask() {
 		public void run() {
-
 			if(druck_links){
 				current_Position.x += Math.round((Math.cos(grad--*winkel)*r));
 				current_Position.y += Math.round((Math.sin(grad*winkel)*r));
 				if(grad==0 || grad<0)
 					grad=genauigkeit;
 			}
-			
+
 			else if(druck_rechts){
 				current_Position.x += Math.round((Math.cos(grad++*winkel)*r));
 				current_Position.y += Math.round((Math.sin(grad*winkel)*r));
 				if(grad==genauigkeit)
 					grad=0;
 			}
-			
+
 			else{
 				current_Position.x += Math.round((Math.cos(grad*winkel)*r));
 				current_Position.y += Math.round((Math.sin(grad*winkel)*r));
 			}
+			//Kontrolle ob Punkt belegt ist, wenn ja fliegt Spieler raus / wenn nein bewegt sich die Snake ein Feld weiter
 			if(Controller.getInstance().getW_StartMenu().getW_Game().getGameField().snake_isPunktBelegt(getSnake()))
 			{
-				//Kollision -> Spieler wird deaktiviert
+				lebt = false;
+				System.out.println("tot");
+				Controller.getInstance().getW_StartMenu().getW_Game().getGameField().spieler_Rausgeflogen(getSnake());
 			}
 			else
 				Controller.getInstance().getW_StartMenu().getW_Game().getGameField().snake_BelegtPunkt(getSnake());
+			
+			//Falls nur noch ein Spieler vorhanden ist, wird die letzte Snake auch deaktiviert
+			if(Controller.getInstance().getW_StartMenu().getW_Game().getGameField().getCurrent_SpielerAnzahl() == 1){
+				getT().cancel();
+				getSnake_draw().getT().cancel();
+			}
+			
 		}
 	};
-	
+
 	public Snake(Color farbe, Faehigkeit special, int speed, int drehwinkel, final int links, final int rechts, int oben){
 
 		this.farbe = farbe;
@@ -82,7 +94,7 @@ public class Snake{
 		platzieren();
 		t.schedule(bewegen, speed);
 	}
-	
+
 	public Snake(int spielerNr, Rectangle spielfeld, Color color, final int links, final int rechts, int oben){
 
 		this.spielerNr = spielerNr;
@@ -91,36 +103,34 @@ public class Snake{
 		this.oben = oben;
 		spielfeldgroesse = spielfeld;
 		farbe = color;
-		
+
 		snake_Start();
 	}
-	
+
 	public void snake_Start(){
-		
+
 		platzieren();
 		snake_draw = new Snake_draw(spielfeldgroesse, this);
-			
-		t.schedule(bewegen, 100, 10);
+
+		t.schedule(bewegen, 2000, 10);
 	}
-	
+
 	public void snake_Ende(){
-		
+
+		t.cancel();
+		snake_draw = null;
 	}
-	
+
 	public void platzieren(){
 		int abstandZumRand = 200;
 		int x = (int) ((double)Math.random() * (spielfeldgroesse.width-abstandZumRand*2) + abstandZumRand);
 		int y = (int) ((double)Math.random() * (spielfeldgroesse.height-abstandZumRand*2) + abstandZumRand);
 		current_Position = new Point(x, y);
 		grad = (int)((double)Math.random() * 360);
-		System.out.println(current_Position);
-		System.out.println(grad);
-		
-		System.out.println();
-		System.out.println();
 	}
-	
 
+
+	//Getter & Setter
 	public Color getFarbe() {
 		return farbe;
 	}
@@ -216,7 +226,7 @@ public class Snake{
 	public void setSnake_draw(Snake_draw snake_draw) {
 		this.snake_draw = snake_draw;
 	}
-	
+
 	public Snake getSnake(){
 		return this;
 	}
@@ -229,7 +239,20 @@ public class Snake{
 		this.spielerNr = spielerNr;
 	}
 
-	
-	
-	
+	public Timer getT() {
+		return t;
+	}
+
+	public void setT(Timer t) {
+		this.t = t;
+	}
+
+	public boolean isLebt(){
+		if(lebt)
+			return true;
+		else
+			return false;
+	}
+
+
 }
