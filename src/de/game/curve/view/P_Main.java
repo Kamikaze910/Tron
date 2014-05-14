@@ -26,18 +26,13 @@ public class P_Main{
 	private my_Jlabel l_start = new my_Jlabel("Start",50,50,100,40);
 	private my_Jlabel l_option = new my_Jlabel("Option",50,100,100,40);
 	private my_Jlabel l_ende = new my_Jlabel("Ende",50,150,100,40);
-	private my_Jlabel l_text = new my_Jlabel("Text",50,200,100,40);
-	
-	
+
 	public P_Main (){
 		
-		
-
 		//Labelzuweisung zu Panel
 		p_main.setBackground(Color.black);
 		p_main.add(l_option);
 		p_main.add(l_ende);
-		p_main.add(l_text);
 		p_main.add(l_start);
 
 		//Actio-Listeners
@@ -53,15 +48,15 @@ public class P_Main{
 		});
 		
 		
-		l_text.addMouseListener(new MouseAdapter() {
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				l_text.setText(Integer.toString(Controller.getInstance().get_count()));
-				l_text.revalidate();
-			}
-		});
+//		l_text.addMouseListener(new MouseAdapter() {
+//			
+//			@Override
+//			public void mouseEntered(MouseEvent e) {
+//				// TODO Auto-generated method stub
+//				l_text.setText(Integer.toString(Controller.getInstance().get_count()));
+//				l_text.revalidate();
+//			}
+//		});
 		
 		l_option.addMouseListener(new MouseAdapter() {
 			
@@ -87,7 +82,6 @@ public class P_Main{
 		l_start.setForeground(Color.orange);
 		l_option.setForeground(Color.orange);
 		l_ende.setForeground(Color.orange);
-		l_text.setForeground(Color.orange);
 		return p_main;
 	}
 }
