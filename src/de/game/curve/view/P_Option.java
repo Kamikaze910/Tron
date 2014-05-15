@@ -30,9 +30,9 @@ public class P_Option{
 	private int		holespace = 50;
 	private int		playercount = 4;
 	private int		turnangle = 32;
-	private int		skill;
-	private String	keys[] = new String [12];
-
+	private String	skill[] = {"Jump","invisibility","Speed Up","Slow Motion"};
+	private String	keys[] = {"A","D","S","F","H","G","J","L","K","4","6","5"}; 
+	
 	//Fenster Elemente
 	private JPanel p_option = new JPanel(null);
 
@@ -216,50 +216,62 @@ public class P_Option{
 		t_p1lk.setBounds(150, 500, 50, 40);
 		t_p1lk.setBackground(Color.BLACK);
 		t_p1lk.setForeground(color1);
+		t_p1lk.setText(keys[0]);
 		
 		t_p1rk.setBounds(250, 500, 50, 40);
 		t_p1rk.setBackground(Color.BLACK);
 		t_p1rk.setForeground(color1);
+		t_p1rk.setText(keys[1]);
 		
 		t_p1sk.setBounds(350, 500, 50, 40);
 		t_p1sk.setBackground(Color.BLACK);
 		t_p1sk.setForeground(color1);
+		t_p1sk.setText(keys[2]);
 		
 		t_p2lk.setBounds(150, 550, 50, 40);
 		t_p2lk.setBackground(Color.BLACK);
 		t_p2lk.setForeground(color2);
+		t_p2lk.setText(keys[3]);
 		
 		t_p2rk.setBounds(250, 550, 50, 40);
 		t_p2rk.setBackground(Color.BLACK);
 		t_p2rk.setForeground(color2);
+		t_p2rk.setText(keys[4]);
 		
 		t_p2sk.setBounds(350, 550, 50, 40);
 		t_p2sk.setBackground(Color.BLACK);
 		t_p2sk.setForeground(color2);
+		t_p2sk.setText(keys[5]);
 		
 		t_p3lk.setBounds(150, 600, 50, 40);
 		t_p3lk.setBackground(Color.BLACK);
 		t_p3lk.setForeground(color3);
+		t_p3lk.setText(keys[6]);
 		
 		t_p3rk.setBounds(250, 600, 50, 40);
 		t_p3rk.setBackground(Color.BLACK);
 		t_p3rk.setForeground(color3);
+		t_p3rk.setText(keys[7]);
 		
 		t_p3sk.setBounds(350, 600, 50, 40);
 		t_p3sk.setBackground(Color.BLACK);
 		t_p3sk.setForeground(color3);
+		t_p3sk.setText(keys[8]);
 		
 		t_p4lk.setBounds(150, 650, 50, 40);
 		t_p4lk.setBackground(Color.BLACK);
 		t_p4lk.setForeground(color4);
+		t_p4lk.setText(keys[9]);
 		
 		t_p4rk.setBounds(250, 650, 50, 40);
 		t_p4rk.setBackground(Color.BLACK);
-		t_p4rk.setForeground(color1);
+		t_p4rk.setForeground(color4);
+		t_p4rk.setText(keys[10]);
 		
 		t_p4sk.setBounds(350, 650, 50, 40);
 		t_p4sk.setBackground(Color.BLACK);
-		t_p4sk.setForeground(color1);
+		t_p4sk.setForeground(color4);
+		t_p4sk.setText(keys[11]);
 		
 		l_option.setBounds(50, 50, 50, 40);
 		l_option.setText("Option");
