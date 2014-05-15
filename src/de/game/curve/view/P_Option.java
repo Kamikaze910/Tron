@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
@@ -21,43 +22,47 @@ import de.game.curve.model.my_Jlabel;
 public class P_Option{
 	
 	// Werte
-	private Color 	color1 = Color.blue;
-	private Color 	color2 = Color.red;
-	private Color 	color3 = Color.yellow;
-	private Color	color4 = Color.green;
-	private int		speed = 45;
-	private int     holesize = 40;
-	private int		holespace = 50;
+	private Color 	color1 		= Color.blue;
+	private Color 	color2		= Color.red;
+	private Color 	color3		= Color.yellow;
+	private Color	color4 		= Color.green;
+	private int		speed 		= 45;
+	private int     holesize 	= 40;
+	private int		holespace 	= 50;
 	private int		playercount = 4;
-	private int		turnangle = 32;
-	private String	skill[] = {"Jump","invisibility","Speed Up","Slow Motion"};
-	private String	keys[] = {"A","D","S","F","H","G","J","L","K","4","6","5"}; 
+	private int		turnangle 	= 32;
+	private String	skill[] 	= {"Jump","Invisibility","Speed Up","Slow Motion"};
+	private String	keys[] 		= {"A","D","S","F","H","G","J","L","K","4","6","5"}; 
 	
 	//Fenster Elemente
 	private JPanel p_option = new JPanel(null);
 
 	// Erstellung der Labels 
-	private JLabel l_keysP1 = new JLabel();
-	private JLabel l_keysP2 = new JLabel();
-	private JLabel l_keysP3 = new JLabel();
-	private JLabel l_keysP4 = new JLabel();
-	private JLabel l_spedtext = new JLabel();
-	private JLabel l_holesizetext = new JLabel();
-	private JLabel l_holespacetext = new JLabel();
-	private JLabel l_turnangletext = new JLabel();
-	private JLabel l_anzahlspilertext = new JLabel();
-	private JLabel l_speedvalue = new JLabel();
-	private JLabel l_holesizevalue = new JLabel();
-	private JLabel l_holespacevalue = new JLabel();
-	private JLabel l_turnanglevalue = new JLabel();
-	private JLabel l_option = new JLabel();
-	private JLabel l_keyleft = new JLabel();
-	private JLabel l_keyright = new JLabel();
-	private JLabel l_keyspecial = new JLabel();
-	private JLabel l_specialtext = new JLabel();
-	private JLabel l_specialbild = new JLabel();
-	private JLabel l_button = new JLabel();
-	private JLabel l_specials = new JLabel();
+	private JLabel l_keysP1 			= new JLabel();
+	private JLabel l_keysP2 			= new JLabel();
+	private JLabel l_keysP3 			= new JLabel();
+	private JLabel l_keysP4 			= new JLabel();
+	private JLabel l_spedtext 			= new JLabel();
+	private JLabel l_holesizetext		= new JLabel();
+	private JLabel l_holespacetext 		= new JLabel();
+	private JLabel l_turnangletext 		= new JLabel();
+	private JLabel l_anzahlspilertext	= new JLabel();
+	private JLabel l_speedvalue			= new JLabel();
+	private JLabel l_holesizevalue		= new JLabel();
+	private JLabel l_holespacevalue		= new JLabel();
+	private JLabel l_turnanglevalue 	= new JLabel();
+	private JLabel l_option 			= new JLabel();
+	private JLabel l_keyleft 			= new JLabel();
+	private JLabel l_keyright 			= new JLabel();
+	private JLabel l_keyspecial 		= new JLabel();
+	private JLabel l_specialtext 		= new JLabel();
+	private JLabel l_specialbild 		= new JLabel();
+	private JLabel l_button 			= new JLabel();
+	private JLabel l_specials 			= new JLabel();
+	private JLabel l_sp1				= new JLabel();
+	private JLabel l_sp2				= new JLabel();
+	private JLabel l_sp3				= new JLabel();
+	private JLabel l_sp4				= new JLabel();
 	
 	private JTextField t_p1lk = new JTextField(1);
 	private JTextField t_p1rk = new JTextField(1);
@@ -74,18 +79,22 @@ public class P_Option{
 	
 	private my_Jlabel l_zurueck = new my_Jlabel("Zurück", 50, 900, 100, 40);
 	
-	private JSlider sl_speed = new JSlider(0,100,50);
-	private JSlider sl_holesize = new JSlider(0,100,50);
-	private JSlider sl_holespace = new JSlider(0,100,50);
-	private JSlider sl_turnangle = new JSlider(0,100,50);
+	private JSlider sl_speed 		= new JSlider(0,100,50);
+	private JSlider sl_holesize	 	= new JSlider(0,100,50);
+	private JSlider sl_holespace 	= new JSlider(0,100,50);
+	private JSlider sl_turnangle 	= new JSlider(0,100,50);
 	
-	private JProgressBar p_speed = new JProgressBar(0, 100);
-	private JProgressBar p_holesize = new JProgressBar(0, 100);
-	private JProgressBar p_holespace = new JProgressBar(0, 100);
-	private JProgressBar p_turnangle = new JProgressBar(0, 100);
+	private JProgressBar p_speed 		= new JProgressBar(0, 100);
+	private JProgressBar p_holesize	 	= new JProgressBar(0, 100);
+	private JProgressBar p_holespace 	= new JProgressBar(0, 100);
+	private JProgressBar p_turnangle 	= new JProgressBar(0, 100);
 	
 	private JSpinner sp_playercount = new JSpinner(new SpinnerNumberModel(0, 0, 10, 1));
-			
+	
+	private JLabel i_p1 = new JLabel(new ImageIcon("test.png")); 
+	private JLabel i_p2 = new JLabel(new ImageIcon("test2.png"));
+	private JLabel i_p3 = new JLabel(new ImageIcon("test4.png"));
+	private JLabel i_p4 = new JLabel(new ImageIcon("test3.png"));
 	// Fenster
 	public P_Option (){
 		p_option.setBackground(Color.black);
@@ -199,19 +208,19 @@ public class P_Option{
 		
 		l_keysP1.setBounds(50, 500, 50, 40);
 		l_keysP1.setText("Spieler 1");
-		l_keysP1.setForeground(Color.white);
+		l_keysP1.setForeground(color1);
 		
 		l_keysP2.setBounds(50, 550, 50, 40);
 		l_keysP2.setText("Spieler 2");
-		l_keysP2.setForeground(Color.white);
+		l_keysP2.setForeground(color2);
 		
 		l_keysP3.setBounds(50, 600, 50, 40);
 		l_keysP3.setText("Spieler 3");
-		l_keysP3.setForeground(Color.white);
+		l_keysP3.setForeground(color3);
 		
 		l_keysP4.setBounds(50, 650, 50, 40);
 		l_keysP4.setText("Spieler 4");
-		l_keysP4.setForeground(Color.white);
+		l_keysP4.setForeground(color4);
 		
 		t_p1lk.setBounds(150, 500, 50, 40);
 		t_p1lk.setBackground(Color.BLACK);
@@ -277,6 +286,27 @@ public class P_Option{
 		l_option.setText("Option");
 		l_option.setForeground(Color.orange);
 		
+		l_sp1.setBounds(500, 500, 500, 40);
+		l_sp1.setText(skill[0]);
+		l_sp1.setForeground(color1);
+		
+		l_sp2.setBounds(500, 550, 500, 40);
+		l_sp2.setText(skill[1]);
+		l_sp2.setForeground(color2);
+		
+		l_sp3.setBounds(500, 600, 500, 40);
+		l_sp3.setText(skill[2]);
+		l_sp3.setForeground(color3);
+		
+		l_sp4.setBounds(500, 650, 500, 40);
+		l_sp4.setText(skill[3]);
+		l_sp4.setForeground(color4);
+		
+		i_p1.setBounds(600, 500, 50, 50);
+		i_p2.setBounds(600, 550, 50, 50);
+		i_p3.setBounds(600, 600, 50, 50);
+		i_p4.setBounds(600, 650, 50, 50);
+		
 		//Buttonzuweisung zu Panel
 		
 		p_option.add(l_option);
@@ -322,6 +352,14 @@ public class P_Option{
 		p_option.add(t_p4lk);
 		p_option.add(t_p4rk);
 		p_option.add(t_p4sk);
+		p_option.add(l_sp1);
+		p_option.add(l_sp2);
+		p_option.add(l_sp3);
+		p_option.add(l_sp4);
+		p_option.add(i_p1);
+		p_option.add(i_p2);
+		p_option.add(i_p3);
+		p_option.add(i_p4);
 		
 		sl_speed.setUI(new MetalSliderUI(){
 			protected void scrollDueToClickInTrack(int direction) {
@@ -390,8 +428,58 @@ public class P_Option{
 			}
 		});
 		
-
+		l_sp1.addMouseListener(new MouseAdapter() {
 			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				int i;
+				String s;
+				s = l_sp1.getText();
+				i=skillclcik(s);
+				l_sp1.setText(skill[i]);
+			}
+		});
+		
+		l_sp2.addMouseListener(new MouseAdapter() {
+				
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					// TODO Auto-generated method stub
+					int i;
+					String s;
+					s = l_sp2.getText();
+					i=skillclcik(s);
+					l_sp2.setText(skill[i]);
+				}
+			});
+		
+		l_sp3.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				int i;
+				String s;
+				s = l_sp3.getText();
+				i=skillclcik(s);
+				l_sp3.setText(skill[i]);
+			}
+		});
+		
+		l_sp4.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				int i;
+				String s;
+				s = l_sp4.getText();
+				i=skillclcik(s);
+				l_sp4.setText(skill[i]);
+			}
+		});
+
 		l_zurueck.addMouseListener(new MouseAdapter() {
 				
 			@Override
@@ -419,6 +507,26 @@ public class P_Option{
 //			}
 //		});
 	}	
+	
+	public int skillclcik(String skill){
+		int arr;
+		switch(skill){
+		case "Jump":
+			arr = 1;
+			break;
+		case "Invisibility":
+			arr = 2;
+			break;
+		case "Speed Up":
+			arr = 3;
+			break;
+		default:
+			arr = 0;
+		}
+		
+		return arr;
+		
+	}
 	
 	public JPanel getP_option() {
 		l_zurueck.setForeground(Color.orange);
