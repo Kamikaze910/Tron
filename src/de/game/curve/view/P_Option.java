@@ -1,8 +1,10 @@
 package de.game.curve.view;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URL;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -91,10 +93,7 @@ public class P_Option{
 	
 	private JSpinner sp_playercount = new JSpinner(new SpinnerNumberModel(0, 0, 10, 1));
 	
-	private JLabel i_p1 = new JLabel(new ImageIcon("test.png")); 
-	private JLabel i_p2 = new JLabel(new ImageIcon("test2.png"));
-	private JLabel i_p3 = new JLabel(new ImageIcon("test4.png"));
-	private JLabel i_p4 = new JLabel(new ImageIcon("test3.png"));
+	private JLabel i_p[] = {new JLabel(new ImageIcon("test.png")),new JLabel(new ImageIcon("test2.png")),new JLabel(new ImageIcon("test4.png")), new JLabel(new ImageIcon("test3.png"))};
 	// Fenster
 	public P_Option (){
 		p_option.setBackground(Color.black);
@@ -302,11 +301,11 @@ public class P_Option{
 		l_sp4.setText(skill[3]);
 		l_sp4.setForeground(color4);
 		
-		i_p1.setBounds(600, 500, 50, 50);
-		i_p2.setBounds(600, 550, 50, 50);
-		i_p3.setBounds(600, 600, 50, 50);
-		i_p4.setBounds(600, 650, 50, 50);
-		
+		i_p[0].setBounds(600, 500, 50, 50);
+		i_p[1].setBounds(600, 550, 50, 50);
+		i_p[2].setBounds(600, 600, 50, 50);
+		i_p[3].setBounds(600, 650, 50, 50);
+		//i_p[0] = new JLabel(new ImageIcon("test3.png"));
 		//Buttonzuweisung zu Panel
 		
 		p_option.add(l_option);
@@ -356,10 +355,10 @@ public class P_Option{
 		p_option.add(l_sp2);
 		p_option.add(l_sp3);
 		p_option.add(l_sp4);
-		p_option.add(i_p1);
-		p_option.add(i_p2);
-		p_option.add(i_p3);
-		p_option.add(i_p4);
+		p_option.add(i_p[0]);
+		p_option.add(i_p[1]);
+		p_option.add(i_p[2]);
+		p_option.add(i_p[3]);
 		
 		sl_speed.setUI(new MetalSliderUI(){
 			protected void scrollDueToClickInTrack(int direction) {
