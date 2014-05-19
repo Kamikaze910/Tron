@@ -24,8 +24,6 @@ public class LoadImageApp extends Component {
 	     }
     }
     
-    
-
     public Dimension getPreferredSize() {
         if (img == null) {
              return new Dimension(50,50);

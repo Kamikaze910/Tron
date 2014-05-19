@@ -526,6 +526,126 @@ public class P_Option{
 		t_p8sk.setVisible(a);
 	}
 	
+	public Color getColor1() {
+		return color1;
+	}
+	public void setColor1(Color color1) {
+		this.color1 = color1;
+	}
+	public Color getColor2() {
+		return color2;
+	}
+	public void setColor2(Color color2) {
+		this.color2 = color2;
+	}
+	public Color getColor3() {
+		return color3;
+	}
+	public void setColor3(Color color3) {
+		this.color3 = color3;
+	}
+	public Color getColor4() {
+		return color4;
+	}
+	public void setColor4(Color color4) {
+		this.color4 = color4;
+	}
+	public Color getColor5() {
+		return color5;
+	}
+	public void setColor5(Color color5) {
+		this.color5 = color5;
+	}
+	public Color getColor6() {
+		return color6;
+	}
+	public void setColor6(Color color6) {
+		this.color6 = color6;
+	}
+	public Color getColor7() {
+		return color7;
+	}
+	public void setColor7(Color color7) {
+		this.color7 = color7;
+	}
+	public Color getColor8() {
+		return color8;
+	}
+	public void setColor8(Color color8) {
+		this.color8 = color8;
+	}
+	public int getSpeed() {
+		return speed;
+	}
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
+	public int getHolesize() {
+		return holesize;
+	}
+	public void setHolesize(int holesize) {
+		this.holesize = holesize;
+	}
+	public int getHolespace() {
+		return holespace;
+	}
+	public void setHolespace(int holespace) {
+		this.holespace = holespace;
+	}
+	public int getTurnangle() {
+		return turnangle;
+	}
+	public void setTurnangle(int turnangle) {
+		this.turnangle = turnangle;
+	}
+	public String[] getKeys() {
+		return keys;
+	}
+	public void setKeys(String[] keys) {
+		this.keys = keys;
+	}
+	public LoadImageApp getImg_1() {
+		return img_1;
+	}
+	public void setImg_1(LoadImageApp img_1) {
+		this.img_1 = img_1;
+	}
+	public LoadImageApp getImg_2() {
+		return img_2;
+	}
+	public void setImg_2(LoadImageApp img_2) {
+		this.img_2 = img_2;
+	}
+	public LoadImageApp getImg_3() {
+		return img_3;
+	}
+	public void setImg_3(LoadImageApp img_3) {
+		this.img_3 = img_3;
+	}
+	public LoadImageApp getImg_4() {
+		return img_4;
+	}
+	public void setImg_4(LoadImageApp img_4) {
+		this.img_4 = img_4;
+	}
+	public LoadImageApp getImg_5() {
+		return img_5;
+	}
+	public void setImg_5(LoadImageApp img_5) {
+		this.img_5 = img_5;
+	}
+	public LoadImageApp getImg_6() {
+		return img_6;
+	}
+	public void setImg_6(LoadImageApp img_6) {
+		this.img_6 = img_6;
+	}
+	public LoadImageApp getImg_8() {
+		return img_8;
+	}
+	public void setImg_8(LoadImageApp img_8) {
+		this.img_8 = img_8;
+	}
 	private void addPannel() {
 		p_option.add(l_option);
 		p_option.add(sl_speed);
