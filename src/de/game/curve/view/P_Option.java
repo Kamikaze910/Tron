@@ -1,5 +1,6 @@
 package de.game.curve.view;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.MessageFormat;
@@ -30,10 +31,11 @@ public class P_Option{
 	private Color 	color6		= Color.gray;
 	private Color 	color7		= Color.magenta;
 	private Color	color8 		= Color.white;
+	private int		skillcount	= 4;
 	private int		speed 		= 45;
 	private int     holesize 	= 40;
 	private int		holespace 	= 50;
-	private int		playercount = 4;
+	private int		playercount = 8;
 	private int		turnangle 	= 32;
 	private String	skill[] 	= {"Jump","Invisibility","Speed Up","Slow Motion","Shot"};
 	private String	keys[] 		= {"1.1","1.2","1.3","2.1","2.2","2.3","3.1","3.2","3.3","4.1","4.2","4.3","5.1","5.2","5.3","6.1","6.2","6.3","7.1","7.2","7.3","8.1","8.2","8.3"}; 
@@ -111,7 +113,7 @@ public class P_Option{
 	private JProgressBar p_holespace 	= new JProgressBar(0, 100);
 	private JProgressBar p_turnangle 	= new JProgressBar(0, 100);
 	// Erstellung der JSpinner
-	private JSpinner sp_playercount = new JSpinner(new SpinnerNumberModel(0, 0, 10, 1));
+	private JSpinner sp_playercount = new JSpinner(new SpinnerNumberModel(0, 0, 8, 1));
 	// Erstellung der LoadImageApp
 	private LoadImageApp img_1 = new LoadImageApp();
 	private LoadImageApp img_2 = new LoadImageApp();
@@ -197,136 +199,240 @@ public class P_Option{
 		l_sp1.addMouseListener(new MouseAdapter() {	
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int i;
+				int i,b;
 				String s;
 				s = l_sp1.getText();
-				i=skillclcik(s);
-				l_sp1.setText(skill[i]);
-				if (i==4){
-					img_1.setPic(0);
+				b=e.getButton();
+				if(b == 1){
+					i=skillclcik(s, true);
+					l_sp1.setText(skill[i]);
+					if (i>=skillcount){
+						img_1.setPic(0);
+					}
+					else{
+						img_1.setPic(i+1);
+					}
 				}
 				else{
-					img_1.setPic(i+1);
+					i=skillclcik(s, false);
+					if(i==0){
+						l_sp1.setText(skill[4]);
+					}else{
+					l_sp1.setText(skill[i-1]);
+					}
+					img_1.setPic(i);
 				}
+				
 				p_option.repaint();
 			}
 		});
 		l_sp2.addMouseListener(new MouseAdapter() {		
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int i;
+				int i,b;
 				String s;
 				s = l_sp2.getText();
-				i=skillclcik(s);
-				l_sp2.setText(skill[i]);
-				if (i==4){
-					img_2.setPic(0);
+				b=e.getButton();
+				if(b == 1){
+					i=skillclcik(s, true);
+					l_sp2.setText(skill[i]);
+					if (i>=skillcount){
+						img_2.setPic(0);
+					}
+					else{
+						img_2.setPic(i+1);
+					}
 				}
 				else{
-					img_2.setPic(i+1);
+					i=skillclcik(s, false);
+					if(i==0){
+						l_sp2.setText(skill[4]);
+					}else{
+					l_sp2.setText(skill[i-1]);
+					}
+					img_2.setPic(i);
 				}
+				
 				p_option.repaint();
 			}
 		});
 		l_sp3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int i;
+				int i,b;
 				String s;
 				s = l_sp3.getText();
-				i=skillclcik(s);
-				l_sp3.setText(skill[i]);
-				if (i==4){
-					img_3.setPic(0);
+				b=e.getButton();
+				if(b == 1){
+					i=skillclcik(s, true);
+					l_sp3.setText(skill[i]);
+					if (i>=skillcount){
+						img_3.setPic(0);
+					}
+					else{
+						img_3.setPic(i+1);
+					}
 				}
 				else{
-					img_3.setPic(i+1);
+					i=skillclcik(s, false);
+					if(i==0){
+						l_sp3.setText(skill[4]);
+					}else{
+					l_sp3.setText(skill[i-1]);
+					}
+					img_3.setPic(i);
 				}
+				
 				p_option.repaint();
 			}
 		});
 		l_sp4.addMouseListener(new MouseAdapter() {		
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int i;
+				int i,b;
 				String s;
 				s = l_sp4.getText();
-				i=skillclcik(s);
-				l_sp4.setText(skill[i]);
-				if (i==3){
-					img_4.setPic(0);
+				b=e.getButton();
+				if(b == 1){
+					i=skillclcik(s, true);
+					l_sp4.setText(skill[i]);
+					if (i>=skillcount){
+						img_4.setPic(0);
+					}
+					else{
+						img_4.setPic(i+1);
+					}
 				}
 				else{
-					img_4.setPic(i+1);
+					i=skillclcik(s, false);
+					if(i==0){
+						l_sp4.setText(skill[4]);
+					}else{
+					l_sp4.setText(skill[i-1]);
+					}
+					img_4.setPic(i);
 				}
+				
 				p_option.repaint();
 			}
 		});
 		l_sp5.addMouseListener(new MouseAdapter() {	
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int i;
+				int i,b;
 				String s;
 				s = l_sp5.getText();
-				i=skillclcik(s);
-				l_sp5.setText(skill[i]);
-				if (i==4){
-					img_5.setPic(0);
+				b=e.getButton();
+				if(b == 1){
+					i=skillclcik(s, true);
+					l_sp5.setText(skill[i]);
+					if (i>=skillcount){
+						img_5.setPic(0);
+					}
+					else{
+						img_5.setPic(i+1);
+					}
 				}
 				else{
-					img_5.setPic(i+1);
+					i=skillclcik(s, false);
+					if(i==0){
+						l_sp5.setText(skill[4]);
+					}else{
+					l_sp5.setText(skill[i-1]);
+					}
+					img_5.setPic(i);
 				}
+				
 				p_option.repaint();
 			}
 		});
 		l_sp6.addMouseListener(new MouseAdapter() {		
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int i;
+				int i,b;
 				String s;
 				s = l_sp6.getText();
-				i=skillclcik(s);
-				l_sp6.setText(skill[i]);
-				if (i==4){
-					img_6.setPic(0);
+				b=e.getButton();
+				if(b == 1){
+					i=skillclcik(s, true);
+					l_sp6.setText(skill[i]);
+					if (i>=skillcount){
+						img_6.setPic(0);
+					}
+					else{
+						img_6.setPic(i+1);
+					}
 				}
 				else{
-					img_6.setPic(i+1);
+					i=skillclcik(s, false);
+					if(i==0){
+						l_sp6.setText(skill[4]);
+					}else{
+					l_sp6.setText(skill[i-1]);
+					}
+					img_6.setPic(i);
 				}
+				
 				p_option.repaint();
 			}
 		});
 		l_sp7.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int i;
+				int i,b;
 				String s;
 				s = l_sp7.getText();
-				i=skillclcik(s);
-				l_sp7.setText(skill[i]);
-				if (i==4){
-					img_7.setPic(0);
+				b=e.getButton();
+				if(b == 1){
+					i=skillclcik(s, true);
+					l_sp7.setText(skill[i]);
+					if (i>=skillcount){
+						img_7.setPic(0);
+					}
+					else{
+						img_7.setPic(i+1);
+					}
 				}
 				else{
-					img_7.setPic(i+1);
+					i=skillclcik(s, false);
+					if(i==0){
+						l_sp7.setText(skill[4]);
+					}else{
+					l_sp7.setText(skill[i-1]);
+					}
+					img_7.setPic(i);
 				}
+				
 				p_option.repaint();
 			}
 		});
 		l_sp8.addMouseListener(new MouseAdapter() {		
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int i;
+				int i,b;
 				String s;
 				s = l_sp8.getText();
-				i=skillclcik(s);
-				l_sp8.setText(skill[i]);
-				if (i==4){
-					img_8.setPic(0);
+				b=e.getButton();
+				if(b == 1){
+					i=skillclcik(s, true);
+					l_sp8.setText(skill[i]);
+					if (i>=skillcount){
+						img_8.setPic(0);
+					}
+					else{
+						img_8.setPic(i+1);
+					}
 				}
 				else{
-					img_8.setPic(i+1);
+					i=skillclcik(s, false);
+					if(i==0){
+						l_sp8.setText(skill[4]);
+					}else{
+					l_sp8.setText(skill[i-1]);
+					}
+					img_8.setPic(i);
 				}
+				
 				p_option.repaint();
 			}
 		});
@@ -338,28 +444,51 @@ public class P_Option{
 			}
 		});
 	}	
-	public int skillclcik(String skill){
-		int arr;
-		switch(skill){
-		case "Jump":
-			arr = 1;
-			break;
-		case "Invisibility":
-			arr = 2;
-			break;
-		case "Speed Up":
-			arr = 3;
-			break;
-		case "Slow Motion":
-			arr = 4;
-			break;
-		case "Shot":
-			arr = 0;
-			break;
-		default:
-			arr = 0;
+	public int skillclcik(String skill, boolean r){
+		int arr = 0;
+		if(r){
+			switch(skill){
+				case "Jump":
+					arr = 1;
+					break;
+				case "Invisibility":
+					arr = 2;
+					break;
+				case "Speed Up":
+					arr = 3;
+					break;
+				case "Slow Motion":
+					arr = 4;
+					break;
+				case "Shot":
+					arr = 0;
+					break;
+				default:
+					arr = 0;
+				}
+		}else{
+			switch(skill){
+				case "Shot":
+					arr = 4;
+					break;
+				case "Slow Motion":
+					arr = 3;
+					break;
+				case "Speed Up":
+					arr = 2;
+					break;
+				case "Invisibility":
+					arr = 1;
+					break;
+				case "Jump":
+					arr = 0;
+					break;
+				default:
+					arr = 0;
+				}
 		}
 		return arr;
+		
 	}
 	public JPanel getP_option() {
 		l_zurueck.setForeground(Color.orange);
@@ -986,8 +1115,9 @@ public class P_Option{
 		t_p8sk.setForeground(color8);
 		t_p8sk.setText(keys[23]);
 		
-		l_option.setBounds(50, 50, 50, 40);
+		l_option.setBounds(50, 50, 500, 40);
 		l_option.setText("Option");
+		l_option.setFont(new Font("Comic Sans MS", Font.BOLD, 22));
 		l_option.setForeground(Color.orange);
 		
 		l_sp1.setBounds(500, 500, 500, 40);
