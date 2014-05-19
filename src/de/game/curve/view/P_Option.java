@@ -23,6 +23,10 @@ public class P_Option{
 	private Color 	color2		= Color.red;
 	private Color 	color3		= Color.yellow;
 	private Color	color4 		= Color.green;
+	private Color 	color5 		= Color.cyan;
+	private Color 	color6		= Color.gray;
+	private Color 	color7		= Color.magenta;
+	private Color	color8 		= Color.white;
 	private int		speed 		= 45;
 	private int     holesize 	= 40;
 	private int		holespace 	= 50;
@@ -37,6 +41,10 @@ public class P_Option{
 	private JLabel l_keysP2 			= new JLabel();
 	private JLabel l_keysP3 			= new JLabel();
 	private JLabel l_keysP4 			= new JLabel();
+	private JLabel l_keysP5 			= new JLabel();
+	private JLabel l_keysP6 			= new JLabel();
+	private JLabel l_keysP7 			= new JLabel();
+	private JLabel l_keysP8 			= new JLabel();
 	private JLabel l_spedtext 			= new JLabel();
 	private JLabel l_holesizetext		= new JLabel();
 	private JLabel l_holespacetext 		= new JLabel();
@@ -58,6 +66,10 @@ public class P_Option{
 	private JLabel l_sp2				= new JLabel();
 	private JLabel l_sp3				= new JLabel();
 	private JLabel l_sp4				= new JLabel();
+	private JLabel l_sp5				= new JLabel();
+	private JLabel l_sp6				= new JLabel();
+	private JLabel l_sp7				= new JLabel();
+	private JLabel l_sp8				= new JLabel();
 	// Erstellung der TextField
 	private JTextField t_p1lk = new JTextField(1);
 	private JTextField t_p1rk = new JTextField(1);
@@ -71,6 +83,18 @@ public class P_Option{
 	private JTextField t_p4lk = new JTextField(1);
 	private JTextField t_p4rk = new JTextField(1);
 	private JTextField t_p4sk = new JTextField(1);
+	private JTextField t_p5lk = new JTextField(1);
+	private JTextField t_p5rk = new JTextField(1);
+	private JTextField t_p5sk = new JTextField(1);
+	private JTextField t_p6lk = new JTextField(1);
+	private JTextField t_p6rk = new JTextField(1);
+	private JTextField t_p6sk = new JTextField(1);
+	private JTextField t_p7lk = new JTextField(1);
+	private JTextField t_p7rk = new JTextField(1);
+	private JTextField t_p7sk = new JTextField(1);
+	private JTextField t_p8lk = new JTextField(1);
+	private JTextField t_p8rk = new JTextField(1);
+	private JTextField t_p8sk = new JTextField(1);
 	// Erstellung der my_Jlabels
 	private my_Jlabel l_zurueck = new my_Jlabel("Zurück", 50, 900, 100, 40);
 	// Erstellung der JSlider
@@ -90,6 +114,10 @@ public class P_Option{
 	private LoadImageApp img_2 = new LoadImageApp();
 	private LoadImageApp img_3 = new LoadImageApp();
 	private LoadImageApp img_4 = new LoadImageApp();
+	private LoadImageApp img_5 = new LoadImageApp();
+	private LoadImageApp img_6 = new LoadImageApp();
+	private LoadImageApp img_7 = new LoadImageApp();
+	private LoadImageApp img_8 = new LoadImageApp();
 	
 	// Fenster
 	public P_Option (){
@@ -123,10 +151,18 @@ public class P_Option{
 			}
 		});
 		// Action listener
+		sp_playercount.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+			int p;
+			p=(int) sp_playercount.getValue();
+			setVisible(p);
+			}
+			
+		});
 		sl_speed.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent arg0) {
-				// TODO Auto-generated method stub
 				p_speed.setValue(sl_speed.getValue());
 				l_speedvalue.setText(Integer.toString(sl_speed.getValue()));
 			}
@@ -223,6 +259,74 @@ public class P_Option{
 				p_option.repaint();
 			}
 		});
+		l_sp5.addMouseListener(new MouseAdapter() {	
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int i;
+				String s;
+				s = l_sp5.getText();
+				i=skillclcik(s);
+				l_sp5.setText(skill[i]);
+				if (i==3){
+					img_5.setPic(0);
+				}
+				else{
+					img_5.setPic(i+1);
+				}
+				p_option.repaint();
+			}
+		});
+		l_sp6.addMouseListener(new MouseAdapter() {		
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int i;
+				String s;
+				s = l_sp6.getText();
+				i=skillclcik(s);
+				l_sp6.setText(skill[i]);
+				if (i==3){
+					img_6.setPic(0);
+				}
+				else{
+					img_6.setPic(i+1);
+				}
+				p_option.repaint();
+			}
+		});
+		l_sp7.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int i;
+				String s;
+				s = l_sp7.getText();
+				i=skillclcik(s);
+				l_sp7.setText(skill[i]);
+				if (i==3){
+					img_7.setPic(0);
+				}
+				else{
+					img_7.setPic(i+1);
+				}
+				p_option.repaint();
+			}
+		});
+		l_sp8.addMouseListener(new MouseAdapter() {		
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int i;
+				String s;
+				s = l_sp8.getText();
+				i=skillclcik(s);
+				l_sp8.setText(skill[i]);
+				if (i==3){
+					img_8.setPic(0);
+				}
+				else{
+					img_8.setPic(i+1);
+				}
+				p_option.repaint();
+			}
+		});
 		l_zurueck.addMouseListener(new MouseAdapter() {			
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -255,6 +359,7 @@ public class P_Option{
 		l_zurueck.setForeground(Color.orange);
 		return p_option;
 	}
+
 	private void addPannel() {
 		p_option.add(l_option);
 		p_option.add(sl_speed);
@@ -278,6 +383,10 @@ public class P_Option{
 		p_option.add(l_keysP2);
 		p_option.add(l_keysP3);
 		p_option.add(l_keysP4);
+		p_option.add(l_keysP5);
+		p_option.add(l_keysP6);
+		p_option.add(l_keysP7);
+		p_option.add(l_keysP8);
 		p_option.add(l_zurueck);
 		p_option.add(sp_playercount);
 		p_option.add(l_keyleft);
@@ -299,17 +408,37 @@ public class P_Option{
 		p_option.add(t_p4lk);
 		p_option.add(t_p4rk);
 		p_option.add(t_p4sk);
+		p_option.add(t_p5lk);
+		p_option.add(t_p5rk);
+		p_option.add(t_p5sk);
+		p_option.add(t_p6lk);
+		p_option.add(t_p6rk);
+		p_option.add(t_p6sk);
+		p_option.add(t_p7lk);
+		p_option.add(t_p7rk);
+		p_option.add(t_p7sk);
+		p_option.add(t_p8lk);
+		p_option.add(t_p8rk);
+		p_option.add(t_p8sk);
 		p_option.add(l_sp1);
 		p_option.add(l_sp2);
 		p_option.add(l_sp3);
 		p_option.add(l_sp4);
+		p_option.add(l_sp5);
+		p_option.add(l_sp6);
+		p_option.add(l_sp7);
+		p_option.add(l_sp8);
 		p_option.add(img_1);
 		p_option.add(img_2);
 		p_option.add(img_3);
 		p_option.add(img_4);
+		p_option.add(img_5);
+		p_option.add(img_6);
+		p_option.add(img_7);
+		p_option.add(img_8);
 	}
 	public void setPannel(){
-		
+
 		p_option.setBackground(Color.black);
 		
 		sl_speed.setBounds(150, 100, 500, 40);
@@ -435,6 +564,22 @@ public class P_Option{
 		l_keysP4.setText("Spieler 4");
 		l_keysP4.setForeground(color4);
 		
+		l_keysP5.setBounds(50, 700, 50, 40);
+		l_keysP5.setText("Spieler 5");
+		l_keysP5.setForeground(color5);
+		
+		l_keysP6.setBounds(50, 750, 50, 40);
+		l_keysP6.setText("Spieler 6");
+		l_keysP6.setForeground(color6);
+		
+		l_keysP7.setBounds(50, 800, 50, 40);
+		l_keysP7.setText("Spieler 7");
+		l_keysP7.setForeground(color7);
+		
+		l_keysP8.setBounds(50, 850, 50, 40);
+		l_keysP8.setText("Spieler 8");
+		l_keysP8.setForeground(color8);
+		
 		t_p1lk.setBounds(150, 500, 50, 40);
 		t_p1lk.setBackground(Color.BLACK);
 		t_p1lk.setForeground(color1);
@@ -494,6 +639,66 @@ public class P_Option{
 		t_p4sk.setBackground(Color.BLACK);
 		t_p4sk.setForeground(color4);
 		t_p4sk.setText(keys[11]);
+	
+		t_p5lk.setBounds(150, 700, 50, 40);
+		t_p5lk.setBackground(Color.BLACK);
+		t_p5lk.setForeground(color5);
+		t_p5lk.setText(keys[11]);
+		
+		t_p5rk.setBounds(250, 700, 50, 40);
+		t_p5rk.setBackground(Color.BLACK);
+		t_p5rk.setForeground(color5);
+		t_p5rk.setText(keys[11]);
+		
+		t_p5sk.setBounds(350, 700, 50, 40);
+		t_p5sk.setBackground(Color.BLACK);
+		t_p5sk.setForeground(color5);
+		t_p5sk.setText(keys[11]);
+		
+		t_p6lk.setBounds(150, 750, 50, 40);
+		t_p6lk.setBackground(Color.BLACK);
+		t_p6lk.setForeground(color6);
+		t_p6lk.setText(keys[11]);
+		
+		t_p6rk.setBounds(250, 750, 50, 40);
+		t_p6rk.setBackground(Color.BLACK);
+		t_p6rk.setForeground(color6);
+		t_p6rk.setText(keys[11]);
+		
+		t_p6sk.setBounds(350, 750, 50, 40);
+		t_p6sk.setBackground(Color.BLACK);
+		t_p6sk.setForeground(color6);
+		t_p6sk.setText(keys[11]);
+		
+		t_p7lk.setBounds(150, 800, 50, 40);
+		t_p7lk.setBackground(Color.BLACK);
+		t_p7lk.setForeground(color7);
+		t_p7lk.setText(keys[11]);
+		
+		t_p7rk.setBounds(250, 800, 50, 40);
+		t_p7rk.setBackground(Color.BLACK);
+		t_p7rk.setForeground(color7);
+		t_p7rk.setText(keys[11]);
+		
+		t_p7sk.setBounds(350, 800, 50, 40);
+		t_p7sk.setBackground(Color.BLACK);
+		t_p7sk.setForeground(color7);
+		t_p7sk.setText(keys[11]);
+		
+		t_p8lk.setBounds(150, 850, 50, 40);
+		t_p8lk.setBackground(Color.BLACK);
+		t_p8lk.setForeground(color8);
+		t_p8lk.setText(keys[11]);
+		
+		t_p8rk.setBounds(250, 850, 50, 40);
+		t_p8rk.setBackground(Color.BLACK);
+		t_p8rk.setForeground(color8);
+		t_p8rk.setText(keys[11]);
+		
+		t_p8sk.setBounds(350, 850, 50, 40);
+		t_p8sk.setBackground(Color.BLACK);
+		t_p8sk.setForeground(color8);
+		t_p8sk.setText(keys[11]);
 		
 		l_option.setBounds(50, 50, 50, 40);
 		l_option.setText("Option");
@@ -515,6 +720,22 @@ public class P_Option{
 		l_sp4.setText(skill[3]);
 		l_sp4.setForeground(color4);
 		
+		l_sp5.setBounds(500, 700, 500, 40);
+		l_sp5.setText(skill[0]);
+		l_sp5.setForeground(color5);
+		
+		l_sp6.setBounds(500, 750, 500, 40);
+		l_sp6.setText(skill[1]);
+		l_sp6.setForeground(color6);
+		
+		l_sp7.setBounds(500, 800, 500, 40);
+		l_sp7.setText(skill[2]);
+		l_sp7.setForeground(color7);
+		
+		l_sp8.setBounds(500, 850, 500, 40);
+		l_sp8.setText(skill[3]);
+		l_sp8.setForeground(color8);
+		
 		img_1.setVisible(true);
 		img_1.setBounds(600, 500, 50, 50);
 		img_1.setPreferredSize(null);
@@ -535,6 +756,47 @@ public class P_Option{
 		img_4.setPic(0);
 		img_4.setPreferredSize(null);
 		
+		img_5.setVisible(true);
+		img_5.setBounds(600, 700, 50, 50);
+		img_5.setPreferredSize(null);
+		img_5.setPic(1);
+		
+		img_6.setVisible(true);
+		img_6.setBounds(600, 750, 50, 50);
+		img_6.setPic(2);
+		img_6.setPreferredSize(null);
+	
+		img_7.setVisible(true);
+		img_7.setBounds(600, 800, 50, 50);
+		img_7.setPic(3);
+		img_7.setPreferredSize(null);
+		
+		img_8.setVisible(true);
+		img_8.setBounds(600, 850, 50, 50);
+		img_8.setPic(0);
+		img_8.setPreferredSize(null);
+		
+	}
+	public void setVisible(int pa){
+		switch(pa){
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+		case 7:
+			break;
+		case 8:
+			break;
+		default:								
+		}
 		
 	}
 }
