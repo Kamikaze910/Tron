@@ -23,6 +23,7 @@ import de.game.curve.model.LoadImageApp;
 import de.game.curve.model.my_Jlabel;
 public class P_Option{
 	// Werte
+	// Spieler Farben
 	private Color 	color1 		= Color.blue;
 	private Color 	color2		= Color.red;
 	private Color 	color3		= Color.yellow;
@@ -31,13 +32,18 @@ public class P_Option{
 	private Color 	color6		= Color.gray;
 	private Color 	color7		= Color.magenta;
 	private Color	color8 		= Color.white;
+	// Skill anzahl
 	private int		skillcount	= 4;
-	private int		speed 		= 45;
-	private int     holesize 	= 40;
-	private int		holespace 	= 50;
+	// Spiel Eigenschaften
+	private int		speed 		= 100;
+	private int     holesize 	= 75;
+	private int		holespace 	= 25;
+	private int		turnangle 	= 0;
+	//Spieler anzahl
 	private int		playercount = 8;
-	private int		turnangle 	= 32;
+	// Spieler Skills
 	private String	skill[] 	= {"Jump","Invisibility","Speed Up","Slow Motion","Shot"};
+	//Spieler Tasten
 	private String	keys[] 		= {"1.1","1.2","1.3","2.1","2.2","2.3","3.1","3.2","3.3","4.1","4.2","4.3","5.1","5.2","5.3","6.1","6.2","6.3","7.1","7.2","7.3","8.1","8.2","8.3"}; 
 	//Fenster Elemente
 	private JPanel p_option = new JPanel(null);
@@ -123,12 +129,11 @@ public class P_Option{
 	private LoadImageApp img_6 = new LoadImageApp();
 	private LoadImageApp img_7 = new LoadImageApp();
 	private LoadImageApp img_8 = new LoadImageApp();
-	
 	// Fenster
 	public P_Option (){
-		// ...
+		// Einstellung der Elemente
 		setPannel();
-		//Zuweisung zu Panel
+		//Zuweisung zum Panel
 		addPannel();
 		// Slider + PpgressBar
 		sl_speed.setUI(new MetalSliderUI(){
@@ -175,7 +180,6 @@ public class P_Option{
 		sl_holespace.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent arg0) {
-				// TODO Auto-generated method stub
 				p_holespace.setValue(sl_holespace.getValue());
 				l_holespacevalue.setText(Integer.toString(sl_holespace.getValue()));
 			}
@@ -183,7 +187,6 @@ public class P_Option{
 		sl_holesize.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent arg0) {
-				// TODO Auto-generated method stub
 				p_holesize.setValue(sl_holesize.getValue());
 				l_holesizevalue.setText(Integer.toString(sl_holesize.getValue()));
 			}
@@ -191,7 +194,6 @@ public class P_Option{
 		sl_turnangle.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent arg0) {
-				// TODO Auto-generated method stub
 				p_turnangle.setValue(sl_turnangle.getValue());
 				l_turnanglevalue.setText(Integer.toString(sl_turnangle.getValue()));
 			}
@@ -444,6 +446,7 @@ public class P_Option{
 			}
 		});
 	}	
+	// Änderung des Skills mit Links und Rechts Klick
 	public int skillclcik(String skill, boolean r){
 		int arr = 0;
 		if(r){
@@ -490,11 +493,7 @@ public class P_Option{
 		return arr;
 		
 	}
-	public JPanel getP_option() {
-		l_zurueck.setForeground(Color.orange);
-		return p_option;
-	}
-	
+	// Spieler einblenden und ausblenden
 	public void setVisible(int pa){
 		switch(pa){
 		case 1:
@@ -654,7 +653,11 @@ public class P_Option{
 		t_p8rk.setVisible(a);
 		t_p8sk.setVisible(a);
 	}
-	
+	// Get und Set
+	public JPanel getP_option() {
+		l_zurueck.setForeground(Color.orange);
+		return p_option;
+	}
 	public Color getColor1() {
 		return color1;
 	}
@@ -775,6 +778,8 @@ public class P_Option{
 	public void setImg_8(LoadImageApp img_8) {
 		this.img_8 = img_8;
 	}
+
+	// Einstellung für das Pannel
 	private void addPannel() {
 		p_option.add(l_option);
 		p_option.add(sl_speed);
@@ -1192,6 +1197,5 @@ public class P_Option{
 		img_8.setPic(0);
 		img_8.setPreferredSize(null);
 		
-	}
-	
+	}	
 }
