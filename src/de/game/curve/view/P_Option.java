@@ -2,8 +2,10 @@ package de.game.curve.view;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.MessageFormat;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JSlider;
@@ -13,6 +15,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.plaf.metal.MetalSliderUI;
+import javax.swing.text.DefaultEditorKit.BeepAction;
 
 import de.game.curve.controller.Controller;
 import de.game.curve.model.LoadImageApp;
@@ -32,8 +35,8 @@ public class P_Option{
 	private int		holespace 	= 50;
 	private int		playercount = 4;
 	private int		turnangle 	= 32;
-	private String	skill[] 	= {"Jump","Invisibility","Speed Up","Slow Motion"};
-	private String	keys[] 		= {"A","D","S","F","H","G","J","L","K","4","6","5"}; 
+	private String	skill[] 	= {"Jump","Invisibility","Speed Up","Slow Motion","Shot"};
+	private String	keys[] 		= {"1.1","1.2","1.3","2.1","2.2","2.3","3.1","3.2","3.3","4.1","4.2","4.3","5.1","5.2","5.3","6.1","6.2","6.3","7.1","7.2","7.3","8.1","8.2","8.3"}; 
 	//Fenster Elemente
 	private JPanel p_option = new JPanel(null);
 	// Erstellung der Labels 
@@ -199,7 +202,7 @@ public class P_Option{
 				s = l_sp1.getText();
 				i=skillclcik(s);
 				l_sp1.setText(skill[i]);
-				if (i==3){
+				if (i==4){
 					img_1.setPic(0);
 				}
 				else{
@@ -216,7 +219,7 @@ public class P_Option{
 				s = l_sp2.getText();
 				i=skillclcik(s);
 				l_sp2.setText(skill[i]);
-				if (i==3){
+				if (i==4){
 					img_2.setPic(0);
 				}
 				else{
@@ -233,7 +236,7 @@ public class P_Option{
 				s = l_sp3.getText();
 				i=skillclcik(s);
 				l_sp3.setText(skill[i]);
-				if (i==3){
+				if (i==4){
 					img_3.setPic(0);
 				}
 				else{
@@ -267,7 +270,7 @@ public class P_Option{
 				s = l_sp5.getText();
 				i=skillclcik(s);
 				l_sp5.setText(skill[i]);
-				if (i==3){
+				if (i==4){
 					img_5.setPic(0);
 				}
 				else{
@@ -284,7 +287,7 @@ public class P_Option{
 				s = l_sp6.getText();
 				i=skillclcik(s);
 				l_sp6.setText(skill[i]);
-				if (i==3){
+				if (i==4){
 					img_6.setPic(0);
 				}
 				else{
@@ -301,7 +304,7 @@ public class P_Option{
 				s = l_sp7.getText();
 				i=skillclcik(s);
 				l_sp7.setText(skill[i]);
-				if (i==3){
+				if (i==4){
 					img_7.setPic(0);
 				}
 				else{
@@ -318,7 +321,7 @@ public class P_Option{
 				s = l_sp8.getText();
 				i=skillclcik(s);
 				l_sp8.setText(skill[i]);
-				if (i==3){
+				if (i==4){
 					img_8.setPic(0);
 				}
 				else{
@@ -330,7 +333,7 @@ public class P_Option{
 		l_zurueck.addMouseListener(new MouseAdapter() {			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
+
 				Controller.getInstance().changePanel(Controller.getInstance().getP_main());
 			}
 		});
@@ -348,6 +351,9 @@ public class P_Option{
 			arr = 3;
 			break;
 		case "Slow Motion":
+			arr = 4;
+			break;
+		case "Shot":
 			arr = 0;
 			break;
 		default:
@@ -359,7 +365,167 @@ public class P_Option{
 		l_zurueck.setForeground(Color.orange);
 		return p_option;
 	}
-
+	
+	public void setVisible(int pa){
+		switch(pa){
+		case 1:
+			setVisiblePlayer1(true);
+			setVisiblePlayer2(false);
+			setVisiblePlayer3(false);
+			setVisiblePlayer4(false);
+			setVisiblePlayer5(false);
+			setVisiblePlayer6(false);
+			setVisiblePlayer7(false);
+			setVisiblePlayer8(false);
+			break;
+		case 2:
+			setVisiblePlayer1(true);
+			setVisiblePlayer2(true);
+			setVisiblePlayer3(false);
+			setVisiblePlayer4(false);
+			setVisiblePlayer5(false);
+			setVisiblePlayer6(false);
+			setVisiblePlayer7(false);
+			setVisiblePlayer8(false);
+			break;
+		case 3:
+			setVisiblePlayer1(true);
+			setVisiblePlayer2(true);
+			setVisiblePlayer3(true);
+			setVisiblePlayer4(false);
+			setVisiblePlayer5(false);
+			setVisiblePlayer6(false);
+			setVisiblePlayer7(false);
+			setVisiblePlayer8(false);
+			break;
+		case 4:
+			setVisiblePlayer1(true);
+			setVisiblePlayer2(true);
+			setVisiblePlayer3(true);
+			setVisiblePlayer4(true);
+			setVisiblePlayer5(false);
+			setVisiblePlayer6(false);
+			setVisiblePlayer7(false);
+			setVisiblePlayer8(false);
+			break;
+		case 5:
+			setVisiblePlayer1(true);
+			setVisiblePlayer2(true);
+			setVisiblePlayer3(true);
+			setVisiblePlayer4(true);
+			setVisiblePlayer5(true);
+			setVisiblePlayer6(false);
+			setVisiblePlayer7(false);
+			setVisiblePlayer8(false);
+			break;
+		case 6:
+			setVisiblePlayer1(true);
+			setVisiblePlayer2(true);
+			setVisiblePlayer3(true);
+			setVisiblePlayer4(true);
+			setVisiblePlayer5(true);
+			setVisiblePlayer6(true);
+			setVisiblePlayer7(false);
+			setVisiblePlayer8(false);
+			break;
+		case 7:
+			setVisiblePlayer1(true);
+			setVisiblePlayer2(true);
+			setVisiblePlayer3(true);
+			setVisiblePlayer4(true);
+			setVisiblePlayer5(true);
+			setVisiblePlayer6(true);
+			setVisiblePlayer7(true);
+			setVisiblePlayer8(false);
+			break;
+		case 8:
+			setVisiblePlayer1(true);
+			setVisiblePlayer2(true);
+			setVisiblePlayer3(true);
+			setVisiblePlayer4(true);
+			setVisiblePlayer5(true);
+			setVisiblePlayer6(true);
+			setVisiblePlayer7(true);
+			setVisiblePlayer8(true);
+			break;
+		default:	
+			setVisiblePlayer1(false);
+			setVisiblePlayer2(false);
+			setVisiblePlayer3(false);
+			setVisiblePlayer4(false);
+			setVisiblePlayer5(false);
+			setVisiblePlayer6(false);
+			setVisiblePlayer7(false);
+			setVisiblePlayer8(false);
+		}
+	}
+	public void setVisiblePlayer1(boolean a){
+		l_keysP1.setVisible(a);
+		l_sp1.setVisible(a);
+		img_1.setVisible(a);
+		t_p1lk.setVisible(a);
+		t_p1rk.setVisible(a);
+		t_p1sk.setVisible(a);
+		
+	}
+	public void setVisiblePlayer2(boolean a){
+		l_keysP2.setVisible(a);
+		l_sp2.setVisible(a);
+		img_2.setVisible(a);
+		t_p2lk.setVisible(a);
+		t_p2rk.setVisible(a);
+		t_p2sk.setVisible(a);
+		
+	}
+	public void setVisiblePlayer3(boolean a){
+		l_keysP3.setVisible(a);
+		l_sp3.setVisible(a);
+		img_3.setVisible(a);
+		t_p3lk.setVisible(a);
+		t_p3rk.setVisible(a);
+		t_p3sk.setVisible(a);
+	}
+	public void setVisiblePlayer4(boolean a){
+		l_keysP4.setVisible(a);
+		l_sp4.setVisible(a);
+		img_4.setVisible(a);
+		t_p4lk.setVisible(a);
+		t_p4rk.setVisible(a);
+		t_p4sk.setVisible(a);
+	}
+	public void setVisiblePlayer5(boolean a){
+		l_keysP5.setVisible(a);
+		l_sp5.setVisible(a);
+		img_5.setVisible(a);
+		t_p5lk.setVisible(a);
+		t_p5rk.setVisible(a);
+		t_p5sk.setVisible(a);
+	}
+	public void setVisiblePlayer6(boolean a){
+		l_keysP6.setVisible(a);
+		l_sp6.setVisible(a);
+		img_6.setVisible(a);
+		t_p6lk.setVisible(a);
+		t_p6rk.setVisible(a);
+		t_p6sk.setVisible(a);
+	}
+	public void setVisiblePlayer7(boolean a){
+		l_keysP7.setVisible(a);
+		l_sp7.setVisible(a);
+		img_7.setVisible(a);
+		t_p7lk.setVisible(a);
+		t_p7rk.setVisible(a);
+		t_p7sk.setVisible(a);
+	}
+	public void setVisiblePlayer8(boolean a){
+		l_keysP8.setVisible(a);
+		l_sp8.setVisible(a);
+		img_8.setVisible(a);
+		t_p8lk.setVisible(a);
+		t_p8rk.setVisible(a);
+		t_p8sk.setVisible(a);
+	}
+	
 	private void addPannel() {
 		p_option.add(l_option);
 		p_option.add(sl_speed);
@@ -643,62 +809,62 @@ public class P_Option{
 		t_p5lk.setBounds(150, 700, 50, 40);
 		t_p5lk.setBackground(Color.BLACK);
 		t_p5lk.setForeground(color5);
-		t_p5lk.setText(keys[11]);
+		t_p5lk.setText(keys[12]);
 		
 		t_p5rk.setBounds(250, 700, 50, 40);
 		t_p5rk.setBackground(Color.BLACK);
 		t_p5rk.setForeground(color5);
-		t_p5rk.setText(keys[11]);
+		t_p5rk.setText(keys[13]);
 		
 		t_p5sk.setBounds(350, 700, 50, 40);
 		t_p5sk.setBackground(Color.BLACK);
 		t_p5sk.setForeground(color5);
-		t_p5sk.setText(keys[11]);
+		t_p5sk.setText(keys[14]);
 		
 		t_p6lk.setBounds(150, 750, 50, 40);
 		t_p6lk.setBackground(Color.BLACK);
 		t_p6lk.setForeground(color6);
-		t_p6lk.setText(keys[11]);
+		t_p6lk.setText(keys[15]);
 		
 		t_p6rk.setBounds(250, 750, 50, 40);
 		t_p6rk.setBackground(Color.BLACK);
 		t_p6rk.setForeground(color6);
-		t_p6rk.setText(keys[11]);
+		t_p6rk.setText(keys[16]);
 		
 		t_p6sk.setBounds(350, 750, 50, 40);
 		t_p6sk.setBackground(Color.BLACK);
 		t_p6sk.setForeground(color6);
-		t_p6sk.setText(keys[11]);
+		t_p6sk.setText(keys[17]);
 		
 		t_p7lk.setBounds(150, 800, 50, 40);
 		t_p7lk.setBackground(Color.BLACK);
 		t_p7lk.setForeground(color7);
-		t_p7lk.setText(keys[11]);
+		t_p7lk.setText(keys[18]);
 		
 		t_p7rk.setBounds(250, 800, 50, 40);
 		t_p7rk.setBackground(Color.BLACK);
 		t_p7rk.setForeground(color7);
-		t_p7rk.setText(keys[11]);
+		t_p7rk.setText(keys[19]);
 		
 		t_p7sk.setBounds(350, 800, 50, 40);
 		t_p7sk.setBackground(Color.BLACK);
 		t_p7sk.setForeground(color7);
-		t_p7sk.setText(keys[11]);
+		t_p7sk.setText(keys[20]);
 		
 		t_p8lk.setBounds(150, 850, 50, 40);
 		t_p8lk.setBackground(Color.BLACK);
 		t_p8lk.setForeground(color8);
-		t_p8lk.setText(keys[11]);
+		t_p8lk.setText(keys[21]);
 		
 		t_p8rk.setBounds(250, 850, 50, 40);
 		t_p8rk.setBackground(Color.BLACK);
 		t_p8rk.setForeground(color8);
-		t_p8rk.setText(keys[11]);
+		t_p8rk.setText(keys[22]);
 		
 		t_p8sk.setBounds(350, 850, 50, 40);
 		t_p8sk.setBackground(Color.BLACK);
 		t_p8sk.setForeground(color8);
-		t_p8sk.setText(keys[11]);
+		t_p8sk.setText(keys[23]);
 		
 		l_option.setBounds(50, 50, 50, 40);
 		l_option.setText("Option");
@@ -777,26 +943,5 @@ public class P_Option{
 		img_8.setPreferredSize(null);
 		
 	}
-	public void setVisible(int pa){
-		switch(pa){
-		case 1:
-			break;
-		case 2:
-			break;
-		case 3:
-			break;
-		case 4:
-			break;
-		case 5:
-			break;
-		case 6:
-			break;
-		case 7:
-			break;
-		case 8:
-			break;
-		default:								
-		}
-		
-	}
+	
 }

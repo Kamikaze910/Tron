@@ -54,9 +54,15 @@ public class LoadImageApp extends Component {
     	     } catch (IOException e) {
     	     }
     		break;
-    	case 0:
+    	case 4:
 	   		 try {
 	   	         img = ImageIO.read(new File("Speed Down.png"));
+	   	     } catch (IOException e) {
+	   	     }
+	   		 break;
+    	case 0:
+	   		 try {
+	   	         img = ImageIO.read(new File("Shot.png"));
 	   	     } catch (IOException e) {
 	   	     }
 	   		 break;
