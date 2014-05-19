@@ -1,12 +1,8 @@
 package de.game.curve.view;
-
 import java.awt.Color;
-import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.net.URL;
 
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
@@ -19,10 +15,9 @@ import javax.swing.event.ChangeListener;
 import javax.swing.plaf.metal.MetalSliderUI;
 
 import de.game.curve.controller.Controller;
+import de.game.curve.model.LoadImageApp;
 import de.game.curve.model.my_Jlabel;
-
 public class P_Option{
-	
 	// Werte
 	private Color 	color1 		= Color.blue;
 	private Color 	color2		= Color.red;
@@ -35,10 +30,8 @@ public class P_Option{
 	private int		turnangle 	= 32;
 	private String	skill[] 	= {"Jump","Invisibility","Speed Up","Slow Motion"};
 	private String	keys[] 		= {"A","D","S","F","H","G","J","L","K","4","6","5"}; 
-	
 	//Fenster Elemente
 	private JPanel p_option = new JPanel(null);
-
 	// Erstellung der Labels 
 	private JLabel l_keysP1 			= new JLabel();
 	private JLabel l_keysP2 			= new JLabel();
@@ -65,7 +58,7 @@ public class P_Option{
 	private JLabel l_sp2				= new JLabel();
 	private JLabel l_sp3				= new JLabel();
 	private JLabel l_sp4				= new JLabel();
-	
+	// Erstellung der TextField
 	private JTextField t_p1lk = new JTextField(1);
 	private JTextField t_p1rk = new JTextField(1);
 	private JTextField t_p1sk = new JTextField(1);
@@ -78,26 +71,247 @@ public class P_Option{
 	private JTextField t_p4lk = new JTextField(1);
 	private JTextField t_p4rk = new JTextField(1);
 	private JTextField t_p4sk = new JTextField(1);
-	
+	// Erstellung der my_Jlabels
 	private my_Jlabel l_zurueck = new my_Jlabel("Zurück", 50, 900, 100, 40);
-	
+	// Erstellung der JSlider
 	private JSlider sl_speed 		= new JSlider(0,100,50);
 	private JSlider sl_holesize	 	= new JSlider(0,100,50);
 	private JSlider sl_holespace 	= new JSlider(0,100,50);
 	private JSlider sl_turnangle 	= new JSlider(0,100,50);
-	
+	// Erstellung der JProgressBar
 	private JProgressBar p_speed 		= new JProgressBar(0, 100);
 	private JProgressBar p_holesize	 	= new JProgressBar(0, 100);
 	private JProgressBar p_holespace 	= new JProgressBar(0, 100);
 	private JProgressBar p_turnangle 	= new JProgressBar(0, 100);
-	
+	// Erstellung der JSpinner
 	private JSpinner sp_playercount = new JSpinner(new SpinnerNumberModel(0, 0, 10, 1));
+	// Erstellung der LoadImageApp
+	private LoadImageApp img_1 = new LoadImageApp();
+	private LoadImageApp img_2 = new LoadImageApp();
+	private LoadImageApp img_3 = new LoadImageApp();
+	private LoadImageApp img_4 = new LoadImageApp();
 	
-	private JLabel i_p[] = {new JLabel(new ImageIcon("test.png")),new JLabel(new ImageIcon("test2.png")),new JLabel(new ImageIcon("test4.png")), new JLabel(new ImageIcon("test3.png"))};
 	// Fenster
 	public P_Option (){
+		// ...
+		setPannel();
+		//Zuweisung zu Panel
+		addPannel();
+		// Slider + PpgressBar
+		sl_speed.setUI(new MetalSliderUI(){
+			protected void scrollDueToClickInTrack(int direction) {
+				//scollByBlock(direction);
+				sl_speed.setValue(this.valueForXPosition(sl_speed.getMousePosition().x));
+			}
+		});
+		sl_holespace.setUI(new MetalSliderUI(){
+			protected void scrollDueToClickInTrack(int direction) {
+				//scollByBlock(direction);
+				sl_holespace.setValue(this.valueForXPosition(sl_holespace.getMousePosition().x));
+			}
+		});
+		sl_holesize.setUI(new MetalSliderUI(){
+			protected void scrollDueToClickInTrack(int direction) {
+				//scollByBlock(direction);
+				sl_holesize.setValue(this.valueForXPosition(sl_holesize.getMousePosition().x));
+			}
+		});		
+		sl_turnangle.setUI(new MetalSliderUI(){
+			protected void scrollDueToClickInTrack(int direction) {
+				//scollByBlock(direction);
+				sl_turnangle.setValue(this.valueForXPosition(sl_turnangle.getMousePosition().x));
+			}
+		});
+		// Action listener
+		sl_speed.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent arg0) {
+				// TODO Auto-generated method stub
+				p_speed.setValue(sl_speed.getValue());
+				l_speedvalue.setText(Integer.toString(sl_speed.getValue()));
+			}
+		});
+		sl_holespace.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent arg0) {
+				// TODO Auto-generated method stub
+				p_holespace.setValue(sl_holespace.getValue());
+				l_holespacevalue.setText(Integer.toString(sl_holespace.getValue()));
+			}
+		});
+		sl_holesize.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent arg0) {
+				// TODO Auto-generated method stub
+				p_holesize.setValue(sl_holesize.getValue());
+				l_holesizevalue.setText(Integer.toString(sl_holesize.getValue()));
+			}
+		});
+		sl_turnangle.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent arg0) {
+				// TODO Auto-generated method stub
+				p_turnangle.setValue(sl_turnangle.getValue());
+				l_turnanglevalue.setText(Integer.toString(sl_turnangle.getValue()));
+			}
+		});
+		l_sp1.addMouseListener(new MouseAdapter() {	
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int i;
+				String s;
+				s = l_sp1.getText();
+				i=skillclcik(s);
+				l_sp1.setText(skill[i]);
+				if (i==3){
+					img_1.setPic(0);
+				}
+				else{
+					img_1.setPic(i+1);
+				}
+				p_option.repaint();
+			}
+		});
+		l_sp2.addMouseListener(new MouseAdapter() {		
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int i;
+				String s;
+				s = l_sp2.getText();
+				i=skillclcik(s);
+				l_sp2.setText(skill[i]);
+				if (i==3){
+					img_2.setPic(0);
+				}
+				else{
+					img_2.setPic(i+1);
+				}
+				p_option.repaint();
+			}
+		});
+		l_sp3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int i;
+				String s;
+				s = l_sp3.getText();
+				i=skillclcik(s);
+				l_sp3.setText(skill[i]);
+				if (i==3){
+					img_3.setPic(0);
+				}
+				else{
+					img_3.setPic(i+1);
+				}
+				p_option.repaint();
+			}
+		});
+		l_sp4.addMouseListener(new MouseAdapter() {		
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int i;
+				String s;
+				s = l_sp4.getText();
+				i=skillclcik(s);
+				l_sp4.setText(skill[i]);
+				if (i==3){
+					img_4.setPic(0);
+				}
+				else{
+					img_4.setPic(i+1);
+				}
+				p_option.repaint();
+			}
+		});
+		l_zurueck.addMouseListener(new MouseAdapter() {			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				Controller.getInstance().changePanel(Controller.getInstance().getP_main());
+			}
+		});
+	}	
+	public int skillclcik(String skill){
+		int arr;
+		switch(skill){
+		case "Jump":
+			arr = 1;
+			break;
+		case "Invisibility":
+			arr = 2;
+			break;
+		case "Speed Up":
+			arr = 3;
+			break;
+		case "Slow Motion":
+			arr = 0;
+			break;
+		default:
+			arr = 0;
+		}
+		return arr;
+	}
+	public JPanel getP_option() {
+		l_zurueck.setForeground(Color.orange);
+		return p_option;
+	}
+	private void addPannel() {
+		p_option.add(l_option);
+		p_option.add(sl_speed);
+		p_option.add(sl_holesize);
+		p_option.add(sl_holespace);
+		p_option.add(sl_turnangle);
+		p_option.add(p_speed);
+		p_option.add(p_holesize);
+		p_option.add(p_holespace);
+		p_option.add(p_turnangle);
+		p_option.add(l_spedtext);
+		p_option.add(l_holesizetext);
+		p_option.add(l_holespacetext);
+		p_option.add(l_turnangletext);
+		p_option.add(l_speedvalue);
+		p_option.add(l_holesizevalue);
+		p_option.add(l_holespacevalue);
+		p_option.add(l_turnanglevalue);
+		p_option.add(l_anzahlspilertext);
+		p_option.add(l_keysP1);
+		p_option.add(l_keysP2);
+		p_option.add(l_keysP3);
+		p_option.add(l_keysP4);
+		p_option.add(l_zurueck);
+		p_option.add(sp_playercount);
+		p_option.add(l_keyleft);
+		p_option.add(l_keyright);
+		p_option.add(l_keyspecial);
+		p_option.add(l_specialtext);
+		p_option.add(l_specialbild);
+		p_option.add(l_button);
+		p_option.add(l_specials);
+		p_option.add(t_p1lk);
+		p_option.add(t_p1rk);
+		p_option.add(t_p1sk);
+		p_option.add(t_p2lk);
+		p_option.add(t_p2rk);
+		p_option.add(t_p2sk);
+		p_option.add(t_p3lk);
+		p_option.add(t_p3rk);
+		p_option.add(t_p3sk);
+		p_option.add(t_p4lk);
+		p_option.add(t_p4rk);
+		p_option.add(t_p4sk);
+		p_option.add(l_sp1);
+		p_option.add(l_sp2);
+		p_option.add(l_sp3);
+		p_option.add(l_sp4);
+		p_option.add(img_1);
+		p_option.add(img_2);
+		p_option.add(img_3);
+		p_option.add(img_4);
+	}
+	public void setPannel(){
+		
 		p_option.setBackground(Color.black);
-	
+		
 		sl_speed.setBounds(150, 100, 500, 40);
 		sl_speed.setOpaque(false);
 		sl_speed.setPaintTrack(false);
@@ -301,234 +515,26 @@ public class P_Option{
 		l_sp4.setText(skill[3]);
 		l_sp4.setForeground(color4);
 		
-		i_p[0].setBounds(600, 500, 50, 50);
-		i_p[1].setBounds(600, 550, 50, 50);
-		i_p[2].setBounds(600, 600, 50, 50);
-		i_p[3].setBounds(600, 650, 50, 50);
-		//i_p[0] = new JLabel(new ImageIcon("test3.png"));
-		//Buttonzuweisung zu Panel
+		img_1.setVisible(true);
+		img_1.setBounds(600, 500, 50, 50);
+		img_1.setPreferredSize(null);
+		img_2.setPic(1);
 		
-		p_option.add(l_option);
-		p_option.add(sl_speed);
-		p_option.add(sl_holesize);
-		p_option.add(sl_holespace);
-		p_option.add(sl_turnangle);
-		p_option.add(p_speed);
-		p_option.add(p_holesize);
-		p_option.add(p_holespace);
-		p_option.add(p_turnangle);
-		p_option.add(l_spedtext);
-		p_option.add(l_holesizetext);
-		p_option.add(l_holespacetext);
-		p_option.add(l_turnangletext);
-		p_option.add(l_speedvalue);
-		p_option.add(l_holesizevalue);
-		p_option.add(l_holespacevalue);
-		p_option.add(l_turnanglevalue);
-		p_option.add(l_anzahlspilertext);
-		p_option.add(l_keysP1);
-		p_option.add(l_keysP2);
-		p_option.add(l_keysP3);
-		p_option.add(l_keysP4);
-		p_option.add(l_zurueck);
-		p_option.add(sp_playercount);
-		p_option.add(l_keyleft);
-		p_option.add(l_keyright);
-		p_option.add(l_keyspecial);
-		p_option.add(l_specialtext);
-		p_option.add(l_specialbild);
-		p_option.add(l_button);
-		p_option.add(l_specials);
-		p_option.add(t_p1lk);
-		p_option.add(t_p1rk);
-		p_option.add(t_p1sk);
-		p_option.add(t_p2lk);
-		p_option.add(t_p2rk);
-		p_option.add(t_p2sk);
-		p_option.add(t_p3lk);
-		p_option.add(t_p3rk);
-		p_option.add(t_p3sk);
-		p_option.add(t_p4lk);
-		p_option.add(t_p4rk);
-		p_option.add(t_p4sk);
-		p_option.add(l_sp1);
-		p_option.add(l_sp2);
-		p_option.add(l_sp3);
-		p_option.add(l_sp4);
-		p_option.add(i_p[0]);
-		p_option.add(i_p[1]);
-		p_option.add(i_p[2]);
-		p_option.add(i_p[3]);
+		img_2.setVisible(true);
+		img_2.setBounds(600, 550, 50, 50);
+		img_2.setPic(2);
+		img_2.setPreferredSize(null);
 		
-		sl_speed.setUI(new MetalSliderUI(){
-			protected void scrollDueToClickInTrack(int direction) {
-				//scollByBlock(direction);
-				sl_speed.setValue(this.valueForXPosition(sl_speed.getMousePosition().x));
-			}
-		});
+		img_3.setVisible(true);
+		img_3.setBounds(600, 600, 50, 50);
+		img_3.setPic(3);
+		img_3.setPreferredSize(null);
 		
-		sl_holespace.setUI(new MetalSliderUI(){
-			protected void scrollDueToClickInTrack(int direction) {
-				//scollByBlock(direction);
-				sl_holespace.setValue(this.valueForXPosition(sl_holespace.getMousePosition().x));
-			}
-		});
+		img_4.setVisible(true);
+		img_4.setBounds(600, 650, 50, 50);
+		img_4.setPic(0);
+		img_4.setPreferredSize(null);
 		
-		sl_holesize.setUI(new MetalSliderUI(){
-			protected void scrollDueToClickInTrack(int direction) {
-				//scollByBlock(direction);
-				sl_holesize.setValue(this.valueForXPosition(sl_holesize.getMousePosition().x));
-			}
-		});
 		
-		sl_turnangle.setUI(new MetalSliderUI(){
-			protected void scrollDueToClickInTrack(int direction) {
-				//scollByBlock(direction);
-				sl_turnangle.setValue(this.valueForXPosition(sl_turnangle.getMousePosition().x));
-			}
-		});
-		
-	
-		// Action listener
-		
-		sl_speed.addChangeListener(new ChangeListener() {
-			@Override
-			public void stateChanged(ChangeEvent arg0) {
-				// TODO Auto-generated method stub
-				p_speed.setValue(sl_speed.getValue());
-				l_speedvalue.setText(Integer.toString(sl_speed.getValue()));
-			}
-		});
-		
-		sl_holespace.addChangeListener(new ChangeListener() {
-			@Override
-			public void stateChanged(ChangeEvent arg0) {
-				// TODO Auto-generated method stub
-				p_holespace.setValue(sl_holespace.getValue());
-				l_holespacevalue.setText(Integer.toString(sl_holespace.getValue()));
-			}
-		});
-		
-		sl_holesize.addChangeListener(new ChangeListener() {
-			@Override
-			public void stateChanged(ChangeEvent arg0) {
-				// TODO Auto-generated method stub
-				p_holesize.setValue(sl_holesize.getValue());
-				l_holesizevalue.setText(Integer.toString(sl_holesize.getValue()));
-			}
-		});
-		
-		sl_turnangle.addChangeListener(new ChangeListener() {
-			@Override
-			public void stateChanged(ChangeEvent arg0) {
-				// TODO Auto-generated method stub
-				p_turnangle.setValue(sl_turnangle.getValue());
-				l_turnanglevalue.setText(Integer.toString(sl_turnangle.getValue()));
-			}
-		});
-		
-		l_sp1.addMouseListener(new MouseAdapter() {
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				int i;
-				String s;
-				s = l_sp1.getText();
-				i=skillclcik(s);
-				l_sp1.setText(skill[i]);
-			}
-		});
-		
-		l_sp2.addMouseListener(new MouseAdapter() {
-				
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					// TODO Auto-generated method stub
-					int i;
-					String s;
-					s = l_sp2.getText();
-					i=skillclcik(s);
-					l_sp2.setText(skill[i]);
-				}
-			});
-		
-		l_sp3.addMouseListener(new MouseAdapter() {
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				int i;
-				String s;
-				s = l_sp3.getText();
-				i=skillclcik(s);
-				l_sp3.setText(skill[i]);
-			}
-		});
-		
-		l_sp4.addMouseListener(new MouseAdapter() {
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				int i;
-				String s;
-				s = l_sp4.getText();
-				i=skillclcik(s);
-				l_sp4.setText(skill[i]);
-			}
-		});
-
-		l_zurueck.addMouseListener(new MouseAdapter() {
-				
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				Controller.getInstance().changePanel(Controller.getInstance().getP_main());
-			}
-		});
-		
-//		l_test.addMouseListener(new MouseAdapter() {
-//		
-//		@Override
-//		public void mouseClicked(MouseEvent e) {
-//			// TODO Auto-generated method stub
-//			bar.setValue(e.getX()/5);
-//			l_test2.setText(Integer.toString(e.getX()));
-//		}
-//	});
-//		l_test.addMouseListener(new MouseAdapter() {
-//			
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//				// TODO Auto-generated method stub
-//				Controller.getInstance().set_count(1);
-//			}
-//		});
-	}	
-	
-	public int skillclcik(String skill){
-		int arr;
-		switch(skill){
-		case "Jump":
-			arr = 1;
-			break;
-		case "Invisibility":
-			arr = 2;
-			break;
-		case "Speed Up":
-			arr = 3;
-			break;
-		default:
-			arr = 0;
-		}
-		
-		return arr;
-		
-	}
-	
-	public JPanel getP_option() {
-		l_zurueck.setForeground(Color.orange);
-		return p_option;
 	}
 }
