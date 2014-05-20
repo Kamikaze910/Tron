@@ -33,7 +33,7 @@ public class P_Main{
 
 	public P_Main (){
 		
-	
+		//l_titel.setBounds(x, y, width, height);
 		l_titel.setForeground(Color.orange);
 		l_titel.setBounds(800, 50, 500, 40);
 		l_titel.setFont(new Font("Comic Sans MS", Font.BOLD, 40));
