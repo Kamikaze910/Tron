@@ -1,6 +1,7 @@
 package de.game.curve.view;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -22,18 +23,28 @@ public class P_Main{
 	//Fenster_Elemente - Main
 	private JPanel p_main = new JPanel(null);
 	
-	//label
-	private my_Jlabel l_start = new my_Jlabel("Start",50,50,100,40);
-	private my_Jlabel l_option = new my_Jlabel("Option",50,100,100,40);
-	private my_Jlabel l_ende = new my_Jlabel("Ende",50,150,100,40);
+	//my_label
+	private my_Jlabel l_start = new my_Jlabel("Start",50,100,100,40);
+	private my_Jlabel l_option = new my_Jlabel("Option",50,150,100,40);
+	private my_Jlabel l_ende = new my_Jlabel("Ende",50,200,200,40);
+	
+	//JLabel
+	private JLabel l_titel = new JLabel("Curve");
 
 	public P_Main (){
+		
+	
+		l_titel.setForeground(Color.orange);
+		l_titel.setBounds(800, 50, 500, 40);
+		l_titel.setFont(new Font("Comic Sans MS", Font.BOLD, 40));
+		l_titel.setVisible(true);
 		
 		//Labelzuweisung zu Panel
 		p_main.setBackground(Color.black);
 		p_main.add(l_option);
 		p_main.add(l_ende);
 		p_main.add(l_start);
+		p_main.add(l_titel);
 
 		//Actio-Listeners
 	
