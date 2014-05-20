@@ -3,10 +3,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.text.MessageFormat;
-
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JSlider;
@@ -16,8 +13,6 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.plaf.metal.MetalSliderUI;
-import javax.swing.text.DefaultEditorKit.BeepAction;
-
 import de.game.curve.controller.Controller;
 import de.game.curve.model.LoadImageApp;
 import de.game.curve.model.my_Jlabel;
@@ -778,7 +773,6 @@ public class P_Option{
 	public void setImg_8(LoadImageApp img_8) {
 		this.img_8 = img_8;
 	}
-
 	// Einstellung für das Pannel
 	private void addPannel() {
 		p_option.add(l_option);
